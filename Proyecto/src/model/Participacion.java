@@ -1,35 +1,14 @@
 package model;
 
 public class Participacion {
-	private int id_deportista, id_evento, id_equipo, edad;
+	private int edad;
+	private Evento evento;
+	private Deportista deportista;
+	private Equipo equipo;
 	private String medalla;
 	
 	public Participacion() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getId_deportista() {
-		return id_deportista;
-	}
-
-	public void setId_deportista(int id_deportista) {
-		this.id_deportista = id_deportista;
-	}
-
-	public int getId_evento() {
-		return id_evento;
-	}
-
-	public void setId_evento(int id_evento) {
-		this.id_evento = id_evento;
-	}
-
-	public int getId_equipo() {
-		return id_equipo;
-	}
-
-	public void setId_equipo(int id_equipo) {
-		this.id_equipo = id_equipo;
 	}
 
 	public int getEdad() {
@@ -47,6 +26,34 @@ public class Participacion {
 	public void setMedalla(String medalla) {
 		this.medalla = medalla;
 	}
+
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+
+	public Deportista getDeportista() {
+		return deportista;
+	}
+
+	public void setDeportista(Deportista deportista) {
+		this.deportista = deportista;
+	}
+
+	public Equipo getEquipo() {
+		return equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Deportista: "+deportista.getNombre()+" | Equipo: "+equipo.getNombre()+"-"+equipo.getIniciales()+" | Edad: "+edad+" | Medalla: "+medalla;
+	}
 }

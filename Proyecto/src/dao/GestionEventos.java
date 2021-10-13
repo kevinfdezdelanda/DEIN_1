@@ -93,4 +93,25 @@ public class GestionEventos {
 			return false;
 		}
 	}
+	
+	public boolean borrarEvento(Evento e) {
+		try {
+			String sql = "DELETE FROM olimpiadas.Evento WHERE id_evento = ?";
+			
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+			
+			ps.setInt(1, e.getId());
+			
+			if(ps.executeUpdate()==0) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		}catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
 }

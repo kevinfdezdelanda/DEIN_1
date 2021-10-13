@@ -30,7 +30,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
 
-public class V_Olimpiadas extends JFrame {
+public class V_Olimpiadas2 extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel modelEventos;
@@ -47,7 +47,7 @@ public class V_Olimpiadas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					V_Olimpiadas frame = new V_Olimpiadas();
+					V_Olimpiadas2 frame = new V_Olimpiadas2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +59,7 @@ public class V_Olimpiadas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public V_Olimpiadas() {
+	public V_Olimpiadas2() {
 		
 		modelOlimpiadas2 = new DefaultListModel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +85,7 @@ public class V_Olimpiadas extends JFrame {
 		gbl_panel.columnWidths = new int[]{0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblOlimpiadas = new JLabel("Olimpiadas:");
@@ -142,7 +142,7 @@ public class V_Olimpiadas extends JFrame {
 		JButton btnNueva = new JButton("Nueva");
 		btnNueva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				NuevaEditarOlimpiada neo = new NuevaEditarOlimpiada(V_Olimpiadas.this,true);
+				NuevaEditarOlimpiada neo = new NuevaEditarOlimpiada(V_Olimpiadas2.this,true);
 				neo.setVisible(true);
 				rellenarOlimpiadas();
 
@@ -158,7 +158,7 @@ public class V_Olimpiadas extends JFrame {
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Olimpiada o = (Olimpiada) listOlimpiadas.getSelectedValue();
-				NuevaEditarOlimpiada neo = new NuevaEditarOlimpiada(V_Olimpiadas.this,true,o);
+				NuevaEditarOlimpiada neo = new NuevaEditarOlimpiada(V_Olimpiadas2.this,true,o);
 				neo.setVisible(true);
 				rellenarOlimpiadas();
 			}
@@ -243,7 +243,7 @@ public class V_Olimpiadas extends JFrame {
 		btnNueva_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Olimpiada o = (Olimpiada) listOlimpiadas.getSelectedValue();
-				NuevoEditarEvento nee = new NuevoEditarEvento(V_Olimpiadas.this,true,o);
+				NuevoEditarEvento nee = new NuevoEditarEvento(V_Olimpiadas2.this,true,o);
 				nee.setVisible(true);
 				rellenarEventos(o);
 			}
@@ -266,7 +266,7 @@ public class V_Olimpiadas extends JFrame {
 				try {
 					Olimpiada o = (Olimpiada) listOlimpiadas.getSelectedValue();
 					Evento e = (Evento) listaEvento.getSelectedValue();
-					NuevoEditarEvento nee = new NuevoEditarEvento(V_Olimpiadas.this,true,e);
+					NuevoEditarEvento nee = new NuevoEditarEvento(V_Olimpiadas2.this,true,e);
 					nee.setVisible(true);
 					rellenarEventos(o);
 				}catch (Exception e) {
@@ -307,18 +307,7 @@ public class V_Olimpiadas extends JFrame {
 		gbc_btnDetalles.gridx = 0;
 		gbc_btnDetalles.gridy = 3;
 		panel_2_1.add(btnDetalles, gbc_btnDetalles);
-		btnDetalles.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Evento e = (Evento) listaEvento.getSelectedValue();
-					Participaciones p = new Participaciones(e);
-					p.setVisible(true);
-				}catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Debes seleccionar un evento valido","Error", JOptionPane.ERROR_MESSAGE);
-				}
-				
-			}
-		});
+		
 		
 		rellenarOlimpiadas();
 	}
