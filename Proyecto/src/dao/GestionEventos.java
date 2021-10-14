@@ -38,6 +38,9 @@ public class GestionEventos {
 				
 				eventos.add(e);
 			}
+			c.cerrarConexion();
+			ps.close();
+			rs.close();
 			return eventos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,8 +62,14 @@ public class GestionEventos {
 			ps.setInt(3, e.getDeporte().getId());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();
+
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
+				
 				return true;
 			}
 			
@@ -83,8 +92,12 @@ public class GestionEventos {
 			ps.setInt(4, e.getId());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
 			
@@ -104,8 +117,12 @@ public class GestionEventos {
 			ps.setInt(1, e.getId());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
 			

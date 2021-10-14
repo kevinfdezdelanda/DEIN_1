@@ -311,9 +311,10 @@ public class V_Olimpiadas extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Evento e = (Evento) listaEvento.getSelectedValue();
-					Participaciones p = new Participaciones(e);
+					Participaciones p = new Participaciones(V_Olimpiadas.this,true,e);
 					p.setVisible(true);
 				}catch (Exception e) {
+					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Debes seleccionar un evento valido","Error", JOptionPane.ERROR_MESSAGE);
 				}
 				

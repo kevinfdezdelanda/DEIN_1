@@ -54,6 +54,6 @@ public class Participacion {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Deportista: "+deportista.getNombre()+" | Equipo: "+equipo.getNombre()+"-"+equipo.getIniciales()+" | Edad: "+edad+" | Medalla: "+medalla;
+		return "Deportista: "+deportista.getNombre()+" | Equipo: "+equipo+" | Edad: "+edad+" | Medalla: "+medalla;
 	}
 }

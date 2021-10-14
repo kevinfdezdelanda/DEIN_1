@@ -53,6 +53,9 @@ public class GestionParticipaciones {
 				
 				Participaciones.add(p);
 			}
+			c.cerrarConexion();
+			ps.close();
+			rs.close();
 			return Participaciones;
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
@@ -62,18 +65,55 @@ public class GestionParticipaciones {
 
 	}
 
-	public boolean nuevoDeporte(Deporte d) {
+	public boolean nuevaParticipacion(Participacion p) {
 		try {
-			String sql = "insert into olimpiadas.Deporte (nombre) values (?)";
+			String sql = "INSERT INTO `olimpiadas`.`Participacion` (`id_deportista`, `id_evento`, `id_equipo`, `edad`, `medalla`) VALUES (?, ?, ?, ?, ?);";
 
 			ConexionDB c = new ConexionDB();
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
 
-			ps.setString(1, d.getNombre());
+			ps.setInt(1, p.getDeportista().getId());
+			ps.setInt(2, p.getEvento().getId());
+			ps.setInt(3, p.getEquipo().getId());
+			ps.setInt(4, p.getEdad());
+			ps.setString(5, p.getMedalla());
 
 			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
 				return false;
 			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean editarParticipacion(Participacion p) {
+		try {
+			String sql = "INSERT INTO `olimpiadas`.`Participacion` (`id_deportista`, `id_evento`, `id_equipo`, `edad`, `medalla`) VALUES (?, ?, ?, ?, ?);";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setInt(1, p.getDeportista().getId());
+			ps.setInt(2, p.getEvento().getId());
+			ps.setInt(3, p.getEquipo().getId());
+			ps.setInt(4, p.getEdad());
+			ps.setString(5, p.getMedalla());
+
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
 

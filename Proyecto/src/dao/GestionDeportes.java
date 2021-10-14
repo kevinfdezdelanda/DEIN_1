@@ -32,6 +32,9 @@ public class GestionDeportes {
 								
 				deportes.add(d);
 			}
+			c.cerrarConexion();
+			ps.close();
+			rs.close();
 			return deportes;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,11 +54,14 @@ public class GestionDeportes {
 			ps.setString(1, d.getNombre());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();	
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
-			
 		}catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return false;

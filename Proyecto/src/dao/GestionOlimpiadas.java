@@ -30,6 +30,11 @@ public class GestionOlimpiadas {
 				o.setTemporada(rs.getString("temporada"));
 				olimpiadas.add(o);
 			}
+			
+			c.cerrarConexion();
+			ps.close();
+			rs.close();
+			
 			return olimpiadas;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -52,8 +57,12 @@ public class GestionOlimpiadas {
 			ps.setString(4, o.getCiudad());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
 			
@@ -77,8 +86,12 @@ public class GestionOlimpiadas {
 			ps.setInt(5, o.getId());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
 			
@@ -98,8 +111,12 @@ public class GestionOlimpiadas {
 			ps.setInt(1, o.getId());
 			
 			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();
 				return false;
 			}else {
+				c.cerrarConexion();
+				ps.close();
 				return true;
 			}
 			
