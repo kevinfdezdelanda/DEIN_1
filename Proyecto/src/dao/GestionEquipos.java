@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Deporte;
-import model.Deportista;
+import model.Equipo;
 import model.Equipo;
 import util.ConexionDB;
 
@@ -40,5 +40,83 @@ public class GestionEquipos {
 			return equipos;
 		}
 
+	}
+	
+	public boolean nuevoEquipo(Equipo e) {
+		try {
+			String sql = "INSERT INTO `equipo` (`nombre`, `iniciales`) VALUES (?, ?);";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setString(1, e.getNombre());
+			ps.setString(2, e.getIniciales());
+
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+
+	public boolean editarEquipo(Equipo e) {
+		try {
+			String sql = "UPDATE `equipo` SET `nombre` = ?, `iniciales` = ? WHERE `equipo`.`id_equipo` = ?";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setString(1, e.getNombre());
+			ps.setString(2, e.getIniciales());
+			ps.setInt(3, e.getId());
+			
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean borrarEquipo(Equipo e) {
+		try {
+			String sql = "DELETE FROM `equipo` WHERE `equipo`.`id_equipo` = ?";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setInt(1, e.getId());
+
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
 	}
 }

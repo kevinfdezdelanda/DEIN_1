@@ -96,16 +96,16 @@ public class GestionParticipaciones {
 	
 	public boolean editarParticipacion(Participacion p) {
 		try {
-			String sql = "INSERT INTO `olimpiadas`.`Participacion` (`id_deportista`, `id_evento`, `id_equipo`, `edad`, `medalla`) VALUES (?, ?, ?, ?, ?);";
+			String sql = "UPDATE `Participacion` SET `id_equipo` = ?, `edad` = ?, `medalla` = ? WHERE `participacion`.`id_deportista` = ? AND `participacion`.`id_evento` = ?; ";
 
 			ConexionDB c = new ConexionDB();
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
 
-			ps.setInt(1, p.getDeportista().getId());
-			ps.setInt(2, p.getEvento().getId());
-			ps.setInt(3, p.getEquipo().getId());
-			ps.setInt(4, p.getEdad());
-			ps.setString(5, p.getMedalla());
+			ps.setInt(1, p.getEquipo().getId());
+			ps.setInt(2, p.getEdad());
+			ps.setString(3, p.getMedalla());
+			ps.setInt(4, p.getDeportista().getId());
+			ps.setInt(5, p.getEvento().getId());
 
 			if (ps.executeUpdate() == 0) {
 				c.cerrarConexion();

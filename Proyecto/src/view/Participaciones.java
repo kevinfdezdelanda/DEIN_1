@@ -53,6 +53,9 @@ public class Participaciones extends javax.swing.JDialog {
 	private JLabel lblNomevento;
 	private JSpinner jsEdad;
 	private JComboBox cbMedallas;
+	private JButton btnEditarDep;
+	private JButton btnNuevoDep;
+	private JButton btnBorrarDep;
 
 
 	/**
@@ -148,14 +151,43 @@ public class Participaciones extends javax.swing.JDialog {
 		gbc_panel_1.gridy = 2;
 		panelForm.add(panel_1, gbc_panel_1);
 		
-		JButton btnNuevo_1 = new JButton("Nuevo");
-		panel_1.add(btnNuevo_1);
+		btnNuevoDep = new JButton("Nuevo");
+		btnNuevoDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true);
+				ned.setVisible(true);
+				rellenarDeportistas();
+			}
+		});
+		panel_1.add(btnNuevoDep);
 		
-		JButton btnBorrar_1 = new JButton("Borrar");
-		panel_1.add(btnBorrar_1);
+		btnBorrarDep = new JButton("Borrar");
+		btnBorrarDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Deportista d = (Deportista) cbDeportista.getSelectedItem();
+				GestionDeportistas gd = new GestionDeportistas();
+				
+				if(gd.borrarDeportista(d)) {
+					JOptionPane.showMessageDialog(null, "deportista borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al borrar el deportista (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				rellenarDeportistas();
+			}
+		});
+		panel_1.add(btnBorrarDep);
 		
-		JButton btnEditar_1 = new JButton("Editar");
-		panel_1.add(btnEditar_1);
+		btnEditarDep = new JButton("Editar");
+		btnEditarDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Deportista d = (Deportista) cbDeportista.getSelectedItem();
+				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true, d);
+				ned.setVisible(true);
+				rellenarDeportistas();
+			}
+		});
+		panel_1.add(btnEditarDep);
 		
 		lblEquipo = new JLabel("Equipo:");
 		GridBagConstraints gbc_lblEquipo = new GridBagConstraints();
@@ -268,6 +300,8 @@ public class Participaciones extends javax.swing.JDialog {
 				}
 				
 				cbDeportista.setEnabled(false);
+				btnBorrarDep.setEnabled(false);
+				btnNuevoDep.setEnabled(false);
 				
 				editando = true;
 			}
@@ -382,7 +416,14 @@ public class Participaciones extends javax.swing.JDialog {
 			
 			GestionParticipaciones gp = new GestionParticipaciones();
 			if(editando) {
-				
+				if(gp.editarParticipacion(nPart)) {
+					JOptionPane.showMessageDialog(null, "participacion editada","Exito", JOptionPane.INFORMATION_MESSAGE);
+					rellenarParticipaciones();
+					desabilitarHabilitarElementos(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al editar la participacion","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				editando = false;
 			}else {
 				if(gp.nuevaParticipacion(nPart)) {
 					JOptionPane.showMessageDialog(null, "participacion creada","Exito", JOptionPane.INFORMATION_MESSAGE);

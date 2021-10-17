@@ -42,4 +42,87 @@ public class GestionDeportistas {
 		}
 
 	}
+	
+	public boolean nuevoDeportista(Deportista d) {
+		try {
+			String sql = "INSERT INTO `deportista` (`nombre`, `sexo`, `peso`, `altura`) VALUES (?, ?, ?, ?)";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setString(1, d.getNombre());
+			ps.setString(2, d.getSexo());
+			ps.setInt(3, d.getPeso());
+			ps.setInt(4, d.getAltura());
+
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+
+	public boolean editarDeportista(Deportista d) {
+		try {
+			String sql = "UPDATE `deportista` SET `nombre` = ?, `sexo` = ?, `peso` = ?, `altura` = ? WHERE `deportista`.`id_deportista` = ?";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setString(1, d.getNombre());
+			ps.setString(2, d.getSexo());
+			ps.setInt(3, d.getPeso());
+			ps.setInt(4, d.getAltura());
+			ps.setInt(5, d.getId());
+
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean borrarDeportista(Deportista d) {
+		try {
+			String sql = "DELETE FROM `deportista` WHERE `deportista`.`id_deportista` = ?";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setInt(1, d.getId());
+
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
 }
