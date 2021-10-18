@@ -44,7 +44,7 @@ public class GestionEquipos {
 	
 	public boolean nuevoEquipo(Equipo e) {
 		try {
-			String sql = "INSERT INTO `equipo` (`nombre`, `iniciales`) VALUES (?, ?);";
+			String sql = "INSERT INTO `Equipo` (`nombre`, `iniciales`) VALUES (?, ?);";
 
 			ConexionDB c = new ConexionDB();
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
@@ -70,7 +70,7 @@ public class GestionEquipos {
 
 	public boolean editarEquipo(Equipo e) {
 		try {
-			String sql = "UPDATE `equipo` SET `nombre` = ?, `iniciales` = ? WHERE `equipo`.`id_equipo` = ?";
+			String sql = "UPDATE `Equipo` SET `nombre` = ?, `iniciales` = ? WHERE `id_equipo` = ?";
 
 			ConexionDB c = new ConexionDB();
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
@@ -97,7 +97,7 @@ public class GestionEquipos {
 	
 	public boolean borrarEquipo(Equipo e) {
 		try {
-			String sql = "DELETE FROM `equipo` WHERE `equipo`.`id_equipo` = ?";
+			String sql = "DELETE FROM `Equipo` WHERE id_equipo = ?";
 
 			ConexionDB c = new ConexionDB();
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);

@@ -103,7 +103,7 @@ public class NuevoEditarEquipo extends JDialog {
 			gbc_tfIniciales.gridx = 1;
 			gbc_tfIniciales.gridy = 2;
 			contentPanel.add(tfIniciales, gbc_tfIniciales);
-			tfIniciales.setColumns(10);
+			tfIniciales.setColumns(3);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -131,6 +131,11 @@ public class NuevoEditarEquipo extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		if(equipo != null) {
+			tfNombre.setText(equipo.getNombre());
+			tfIniciales.setText(equipo.getIniciales());
+		}
 	}
 
 	
@@ -140,6 +145,8 @@ public class NuevoEditarEquipo extends JDialog {
 		
 		if(nombre.equals("") || inicales.equals("")) {
 			JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos","Error", JOptionPane.ERROR_MESSAGE);
+		}else if(inicales.length()>3) {
+			JOptionPane.showMessageDialog(null, "Las iniciales no deben tener mas de 3 caracteres","Error", JOptionPane.ERROR_MESSAGE);
 		}else {
 			Equipo e = new Equipo();
 			e.setIniciales(inicales);

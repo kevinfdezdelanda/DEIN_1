@@ -215,14 +215,45 @@ public class Participaciones extends javax.swing.JDialog {
 		gbc_panel_1_1.gridy = 4;
 		panelForm.add(panel_1_1, gbc_panel_1_1);
 		
-		JButton btnNuevo_1_1 = new JButton("Nuevo");
-		panel_1_1.add(btnNuevo_1_1);
+		JButton btnNuevoEquipo = new JButton("Nuevo");
+		btnNuevoEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true);
+				nee.setVisible(true);
+				rellenarEquipos();
+			}
+		});
+		panel_1_1.add(btnNuevoEquipo);
 		
-		JButton btnBorrar_1_1 = new JButton("Borrar");
-		panel_1_1.add(btnBorrar_1_1);
+		JButton btnBorrarEquipo = new JButton("Borrar");
+		btnBorrarEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				Equipo e = (Equipo) cbEquipos.getSelectedItem();
+				GestionEquipos ge = new GestionEquipos();
+				
+				if(ge.borrarEquipo(e)) {
+					JOptionPane.showMessageDialog(null, "Equipo borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al borrar el equipo (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				rellenarEquipos();
+			}
+		});
+		panel_1_1.add(btnBorrarEquipo);
 		
-		JButton btnEditar_1_1 = new JButton("Editar");
-		panel_1_1.add(btnEditar_1_1);
+		JButton btnEditarEquipo = new JButton("Editar");
+		btnEditarEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				Equipo e = (Equipo) cbEquipos.getSelectedItem();
+				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true, e);
+				nee.setVisible(true);
+				rellenarEquipos();
+				
+				rellenarEquipos();
+			}
+		});
+		panel_1_1.add(btnEditarEquipo);
 		
 		JLabel lblMedalla = new JLabel("Medalla:");
 		GridBagConstraints gbc_lblMedalla = new GridBagConstraints();
