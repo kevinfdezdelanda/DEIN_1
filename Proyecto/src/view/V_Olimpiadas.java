@@ -29,6 +29,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class V_Olimpiadas extends JFrame {
 
@@ -64,6 +68,27 @@ public class V_Olimpiadas extends JFrame {
 		modelOlimpiadas2 = new DefaultListModel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 616, 344);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenuItem mntmEquipos = new JMenuItem("Equipos");
+		mntmEquipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Equipos e = new Equipos(V_Olimpiadas.this,true);
+				e.setVisible(true);
+			}
+		});
+		menuBar.add(mntmEquipos);
+		
+		JMenuItem mntmDeportistas = new JMenuItem("Deportistas");
+		mntmDeportistas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Deportistas d = new Deportistas(V_Olimpiadas.this,true);
+				d.setVisible(true);
+			}
+		});
+		menuBar.add(mntmDeportistas);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

@@ -14,7 +14,6 @@ import dao.GestionDeportistas;
 import dao.GestionEquipos;
 import model.Deporte;
 import model.Deportista;
-import model.Deporte;
 import model.Equipo;
 
 import java.awt.GridBagLayout;
@@ -28,15 +27,15 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Deportistas extends JDialog {
-	private DefaultListModel modelDeportistas;
-	private JList listDeportistas;
+public class Deportes extends JDialog {
+	private DefaultListModel modelDeporte;
+	private JList listDeportes;
 
 
 	/**
 	 * Create the dialog.
 	 */
-	public Deportistas(java.awt.Frame parent, boolean modal) {
+	public Deportes(java.awt.Frame parent, boolean modal) {
 		super(parent,modal);
 		
 		setBounds(100, 100, 450, 300);
@@ -58,8 +57,8 @@ public class Deportistas extends JDialog {
 			gbc_scrollPane.gridy = 0;
 			contentPanel.add(scrollPane, gbc_scrollPane);
 			{
-				listDeportistas = new JList();
-				scrollPane.setViewportView(listDeportistas);
+				listDeportes = new JList();
+				scrollPane.setViewportView(listDeportes);
 			}
 		}
 		{
@@ -70,9 +69,9 @@ public class Deportistas extends JDialog {
 				JButton btnNuevo = new JButton("Nuevo");
 				btnNuevo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true);
+						NuevoEditarDeporte ned = new NuevoEditarDeporte(parent, true);
 						ned.setVisible(true);
-						rellenarDeportistas();
+						rellenarDeportes();
 					}
 				});
 				btnNuevo.setActionCommand("OK");
@@ -83,14 +82,14 @@ public class Deportistas extends JDialog {
 				JButton btnNewButton = new JButton("Editar");
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Deportista d = (Deportista) listDeportistas.getSelectedValue();
+						Deporte d = (Deporte) listDeportes.getSelectedValue();
 						
 						if(d==null) {
-							JOptionPane.showMessageDialog(null, "Debes seleccionar un deportista","Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Debes seleccionar un Deporte","Error", JOptionPane.ERROR_MESSAGE);
 						}else {
-							NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true, d);
+							NuevoEditarDeporte ned = new NuevoEditarDeporte(parent, true, d);
 							ned.setVisible(true);
-							rellenarDeportistas();
+							rellenarDeportes();
 						}
 					}
 				});
@@ -100,20 +99,20 @@ public class Deportistas extends JDialog {
 				JButton btnBorrar = new JButton("Borrar");
 				btnBorrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Deportista d = (Deportista) listDeportistas.getSelectedValue();
-						GestionDeportistas gd = new GestionDeportistas();
+						Deporte d = (Deporte) listDeportes.getSelectedValue();
+						GestionDeportes gd = new GestionDeportes();
 						
 						if(d==null) {
-							JOptionPane.showMessageDialog(null, "Debes seleccionar un deportista","Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Debes seleccionar un Deporte","Error", JOptionPane.ERROR_MESSAGE);
 						}else {
-							if(gd.borrarDeportista(d)) {
-								JOptionPane.showMessageDialog(null, "Deportista borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+							if(gd.(d)) {
+								JOptionPane.showMessageDialog(null, "Deporte borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
 							}else {
-								JOptionPane.showMessageDialog(null, "Error al borrar el deportista (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Error al borrar el Deporte (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
 						
-						rellenarDeportistas();
+						rellenarDeportes();
 					}
 				});
 				buttonPane.add(btnBorrar);
@@ -125,22 +124,23 @@ public class Deportistas extends JDialog {
 			}
 		}
 		
-		rellenarDeportistas();
+		rellenarDeportes();
 	}
 	
-	public void rellenarDeportistas() {
-		GestionDeportistas gd = new GestionDeportistas();
-		ArrayList<Deportista> deportistas = gd.getDeportistas();
+	public void rellenarDeportes() {
+		GestionDeportes gd = new GestionDeportes();
+		ArrayList<Deporte> deportes = gd.getDeportes();
 		
-		modelDeportistas = new DefaultListModel();
+		modelDeporte = new DefaultListModel();
 		
-		listDeportistas.setModel(modelDeportistas);
-		if(deportistas.size()==0) {
+		listDeportes.setModel(modelDeporte);
+		if(deportes.size()==0) {
 			ArrayList<String> error = new ArrayList<String>();
-			error.add("Sin Deportistas");
-			modelDeportistas.addAll(error);
+			error.add("Sin deportes");
+			modelDeporte.addAll(error);
 		}else {
-			modelDeportistas.addAll(deportistas);
+			modelDeporte.addAll(deportes);
 		}
 	}
+
 }
