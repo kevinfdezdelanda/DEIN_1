@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Toolkit;
 
 public class NuevaEditarOlimpiada extends javax.swing.JDialog {
 
@@ -38,20 +39,24 @@ public class NuevaEditarOlimpiada extends javax.swing.JDialog {
 	
 	/**
 	 * Create the frame.
+	 * @wbp.parser.constructor
 	 */
 	public NuevaEditarOlimpiada(java.awt.Frame parent, boolean modal) {
 		super(parent,modal);
 		
 		dibujar();
+		eventos();
 	}
 	
 	public NuevaEditarOlimpiada(java.awt.Frame parent, boolean modal, Olimpiada o) {
 		super(parent,modal);
 		this.olimpiada = o;
 		dibujar();
+		eventos();
 	}
 
 	public void dibujar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevaEditarOlimpiada.class.getResource("/imagenes/olimpiadasLogo.png")));
 		setBounds(100, 100, 248, 297);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +68,7 @@ public class NuevaEditarOlimpiada extends javax.swing.JDialog {
 		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblAo = new JLabel("AÃ±o:");
+		JLabel lblAo = new JLabel("Año:");
 		GridBagConstraints gbc_lblAo = new GridBagConstraints();
 		gbc_lblAo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAo.anchor = GridBagConstraints.EAST;
@@ -123,24 +128,31 @@ public class NuevaEditarOlimpiada extends javax.swing.JDialog {
 		contentPane.add(panel, gbc_panel);
 		
 		btnCancelar = new JButton("Cancelar");
+		panel.add(btnCancelar);
+		
+		btnAceptar = new JButton("Aceptar");
+		panel.add(btnAceptar);
+		
+		if(olimpiada!=null) {
+			rellenarDatos();
+			setTitle("Editar olimpiada");
+		}else {
+			setTitle("Nueva olimpiada");
+		}
+	}
+
+	public void eventos() {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-		panel.add(btnCancelar);
 		
-		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				guardar();
 			}
 		});
-		panel.add(btnAceptar);
-		
-		if(olimpiada!=null) {
-			rellenarDatos();
-		}
 	}
 	
 	public void guardar() {
@@ -149,11 +161,11 @@ public class NuevaEditarOlimpiada extends javax.swing.JDialog {
 		try {
 			anio = Integer.parseInt(txtAnio.getText());
 		}catch (NumberFormatException e) {
-			error += "El aÃ±o debe ser un numero \n";
+			error += "El año debe ser un numero \n";
 		}
 		
 		if(anio>2999 || anio<1000) {
-			error += "El aÃ±o debe ser valido (desde 1000, hasta 2999)\n";
+			error += "El año debe ser valido (desde 1000, hasta 2999)\n";
 		}
 		
 		String temp = (String) cbTemp.getSelectedItem();

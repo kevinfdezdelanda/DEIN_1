@@ -27,10 +27,15 @@ import java.awt.GridBagConstraints;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Deportistas extends JDialog {
 	private DefaultListModel modelDeportistas;
 	private JList listDeportistas;
+	private JButton btnNuevo;
+	private JButton btnEditar;
+	private JButton btnBorrar;
+	private JButton cancelButton;
 
 
 	/**
@@ -38,6 +43,14 @@ public class Deportistas extends JDialog {
 	 */
 	public Deportistas(java.awt.Frame parent, boolean modal) {
 		super(parent,modal);
+		
+		dibujar();
+		eventos(parent);
+	}
+
+	public void dibujar() {
+		setTitle("Deportistas");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Deportistas.class.getResource("/imagenes/olimpiadasLogo.png")));
 		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -67,65 +80,79 @@ public class Deportistas extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnNuevo = new JButton("Nuevo");
-				btnNuevo.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true);
-						ned.setVisible(true);
-						rellenarDeportistas();
-					}
-				});
+				btnNuevo = new JButton("Nuevo");
 				btnNuevo.setActionCommand("OK");
 				buttonPane.add(btnNuevo);
 				getRootPane().setDefaultButton(btnNuevo);
 			}
 			{
-				JButton btnNewButton = new JButton("Editar");
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						Deportista d = (Deportista) listDeportistas.getSelectedValue();
-						
-						if(d==null) {
-							JOptionPane.showMessageDialog(null, "Debes seleccionar un deportista","Error", JOptionPane.ERROR_MESSAGE);
-						}else {
-							NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true, d);
-							ned.setVisible(true);
-							rellenarDeportistas();
-						}
-					}
-				});
-				buttonPane.add(btnNewButton);
+				btnEditar = new JButton("Editar");
+				buttonPane.add(btnEditar);
 			}
 			{
-				JButton btnBorrar = new JButton("Borrar");
-				btnBorrar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						Deportista d = (Deportista) listDeportistas.getSelectedValue();
-						GestionDeportistas gd = new GestionDeportistas();
-						
-						if(d==null) {
-							JOptionPane.showMessageDialog(null, "Debes seleccionar un deportista","Error", JOptionPane.ERROR_MESSAGE);
-						}else {
-							if(gd.borrarDeportista(d)) {
-								JOptionPane.showMessageDialog(null, "Deportista borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
-							}else {
-								JOptionPane.showMessageDialog(null, "Error al borrar el deportista (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
-							}
-						}
-						
-						rellenarDeportistas();
-					}
-				});
+				btnBorrar = new JButton("Borrar");
 				buttonPane.add(btnBorrar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 		
 		rellenarDeportistas();
+	}
+
+	public void eventos(java.awt.Frame parent) {
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true);
+				ned.setVisible(true);
+				rellenarDeportistas();
+			}
+		});
+		
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Deportista d = (Deportista) listDeportistas.getSelectedValue();
+				
+				if(d==null) {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un deportista","Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true, d);
+					ned.setVisible(true);
+					rellenarDeportistas();
+				}
+			}
+		});
+		
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Deportista d = (Deportista) listDeportistas.getSelectedValue();
+				GestionDeportistas gd = new GestionDeportistas();
+				
+				if(d==null) {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un deportista","Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					int dialogResult = JOptionPane.showConfirmDialog (null, "¿Estas seguro de realizar esta accion?","Seguro?",JOptionPane.YES_NO_OPTION);
+					if(dialogResult == JOptionPane.YES_OPTION){
+						if(gd.borrarDeportista(d)) {
+							JOptionPane.showMessageDialog(null, "Deportista borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al borrar el deportista (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+				
+				rellenarDeportistas();
+			}
+		});
+		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 	
 	public void rellenarDeportistas() {

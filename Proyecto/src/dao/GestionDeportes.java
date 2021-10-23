@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Deporte;
+import model.Equipo;
 import model.Evento;
 import model.Olimpiada;
 import util.ConexionDB;
@@ -52,6 +53,56 @@ public class GestionDeportes {
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
 			
 			ps.setString(1, d.getNombre());
+			
+			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();	
+				return false;
+			}else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+		}catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean editarDeporte(Deporte d) {
+		try {
+			String sql = "UPDATE `deporte` SET `nombre` = ? WHERE `deporte`.`id_deporte` = ? ";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setString(1, d.getNombre());
+			ps.setInt(2, d.getId());
+			
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean borrarDeporte(Deporte d) {
+		try {
+			String sql = "DELETE FROM `deporte` WHERE `deporte`.`id_deporte` = ?";
+			
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+			
+			ps.setInt(1, d.getId());
 			
 			if(ps.executeUpdate()==0) {
 				c.cerrarConexion();

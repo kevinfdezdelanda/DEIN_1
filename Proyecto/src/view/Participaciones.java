@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Toolkit;
 
 public class Participaciones extends javax.swing.JDialog {
 
@@ -56,6 +57,14 @@ public class Participaciones extends javax.swing.JDialog {
 	private JButton btnEditarDep;
 	private JButton btnNuevoDep;
 	private JButton btnBorrarDep;
+	private java.awt.Frame parent;
+	private JButton btnNuevoEquipo;
+	private JButton btnBorrarEquipo;
+	private JButton btnEditarEquipo;
+	private JButton btnCancelar;
+	private JButton btnGuardar;
+	private JButton btnEditar;
+	private JButton btnBorrar;
 
 
 	/**
@@ -63,8 +72,22 @@ public class Participaciones extends javax.swing.JDialog {
 	 */
 	public Participaciones(java.awt.Frame parent, boolean modal, Evento e) {
 		super(parent,modal);
+		this.parent = parent;
 		evento = e;
 		editando = false;
+		
+		dibujar();
+		eventos();
+		
+		rellenarParticipaciones();
+		rellenarDeportistas();
+		rellenarEquipos();
+		desabilitarHabilitarElementos(false);
+	}
+
+	public void dibujar() {
+		setTitle("Participaciones");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Participaciones.class.getResource("/imagenes/olimpiadasLogo.png")));
 		
 		setBounds(100, 100, 950, 392);
 		contentPane = new JPanel();
@@ -152,41 +175,12 @@ public class Participaciones extends javax.swing.JDialog {
 		panelForm.add(panel_1, gbc_panel_1);
 		
 		btnNuevoDep = new JButton("Nuevo");
-		btnNuevoDep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true);
-				ned.setVisible(true);
-				rellenarDeportistas();
-			}
-		});
 		panel_1.add(btnNuevoDep);
 		
 		btnBorrarDep = new JButton("Borrar");
-		btnBorrarDep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Deportista d = (Deportista) cbDeportista.getSelectedItem();
-				GestionDeportistas gd = new GestionDeportistas();
-				
-				if(gd.borrarDeportista(d)) {
-					JOptionPane.showMessageDialog(null, "deportista borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "Error al borrar el deportista (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				rellenarDeportistas();
-			}
-		});
 		panel_1.add(btnBorrarDep);
 		
 		btnEditarDep = new JButton("Editar");
-		btnEditarDep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Deportista d = (Deportista) cbDeportista.getSelectedItem();
-				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true, d);
-				ned.setVisible(true);
-				rellenarDeportistas();
-			}
-		});
 		panel_1.add(btnEditarDep);
 		
 		lblEquipo = new JLabel("Equipo:");
@@ -215,44 +209,13 @@ public class Participaciones extends javax.swing.JDialog {
 		gbc_panel_1_1.gridy = 4;
 		panelForm.add(panel_1_1, gbc_panel_1_1);
 		
-		JButton btnNuevoEquipo = new JButton("Nuevo");
-		btnNuevoEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true);
-				nee.setVisible(true);
-				rellenarEquipos();
-			}
-		});
+		btnNuevoEquipo = new JButton("Nuevo");
 		panel_1_1.add(btnNuevoEquipo);
 		
-		JButton btnBorrarEquipo = new JButton("Borrar");
-		btnBorrarEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				Equipo e = (Equipo) cbEquipos.getSelectedItem();
-				GestionEquipos ge = new GestionEquipos();
-				
-				if(ge.borrarEquipo(e)) {
-					JOptionPane.showMessageDialog(null, "Equipo borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "Error al borrar el equipo (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				rellenarEquipos();
-			}
-		});
+		btnBorrarEquipo = new JButton("Borrar");
 		panel_1_1.add(btnBorrarEquipo);
 		
-		JButton btnEditarEquipo = new JButton("Editar");
-		btnEditarEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				Equipo e = (Equipo) cbEquipos.getSelectedItem();
-				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true, e);
-				nee.setVisible(true);
-				rellenarEquipos();
-				
-				rellenarEquipos();
-			}
-		});
+		btnEditarEquipo = new JButton("Editar");
 		panel_1_1.add(btnEditarEquipo);
 		
 		JLabel lblMedalla = new JLabel("Medalla:");
@@ -283,20 +246,10 @@ public class Participaciones extends javax.swing.JDialog {
 		gbc_panel_2.gridy = 7;
 		panelForm.add(panel_2, gbc_panel_2);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				desabilitarHabilitarElementos(false);
-			}
-		});
+		btnCancelar = new JButton("Cancelar");
 		panel_2.add(btnCancelar);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				guardar();
-			}
-		});
+		btnGuardar = new JButton("Guardar");
 		panel_2.add(btnGuardar);
 		
 		JPanel panel_3 = new JPanel();
@@ -315,7 +268,94 @@ public class Participaciones extends javax.swing.JDialog {
 		});
 		panel_3.add(btnNuevo);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
+		panel_3.add(btnEditar);
+		
+		btnBorrar = new JButton("Borrar");
+		panel_3.add(btnBorrar);
+		
+		lblNomevento.setText(evento.toString());
+	}
+
+	public void eventos() {
+		btnNuevoDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true);
+				ned.setVisible(true);
+				rellenarDeportistas();
+			}
+		});
+		
+		btnBorrarDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Deportista d = (Deportista) cbDeportista.getSelectedItem();
+				GestionDeportistas gd = new GestionDeportistas();
+				
+				if(gd.borrarDeportista(d)) {
+					JOptionPane.showMessageDialog(null, "deportista borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al borrar el deportista (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				rellenarDeportistas();
+			}
+		});
+		
+		btnEditarDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Deportista d = (Deportista) cbDeportista.getSelectedItem();
+				NuevoEditarDeportista ned = new NuevoEditarDeportista(parent, true, d);
+				ned.setVisible(true);
+				rellenarDeportistas();
+			}
+		});
+		
+		btnNuevoEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true);
+				nee.setVisible(true);
+				rellenarEquipos();
+			}
+		});
+		
+		btnBorrarEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				Equipo e = (Equipo) cbEquipos.getSelectedItem();
+				GestionEquipos ge = new GestionEquipos();
+				
+				if(ge.borrarEquipo(e)) {
+					JOptionPane.showMessageDialog(null, "Equipo borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al borrar el equipo (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				rellenarEquipos();
+			}
+		});
+		
+		btnEditarEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				Equipo e = (Equipo) cbEquipos.getSelectedItem();
+				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true, e);
+				nee.setVisible(true);
+				rellenarEquipos();
+				
+				rellenarEquipos();
+			}
+		});
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				desabilitarHabilitarElementos(false);
+			}
+		});
+		
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				guardar();
+			}
+		});
+		
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				desabilitarHabilitarElementos(true);
@@ -337,16 +377,28 @@ public class Participaciones extends javax.swing.JDialog {
 				editando = true;
 			}
 		});
-		panel_3.add(btnEditar);
 		
-		JButton btnBorrar = new JButton("Borrar");
-		panel_3.add(btnBorrar);
-		
-		lblNomevento.setText(e.getNombre());
-		rellenarParticipaciones();
-		rellenarDeportistas();
-		rellenarEquipos();
-		desabilitarHabilitarElementos(false);
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Participacion p = (Participacion) list.getSelectedValue();
+				GestionParticipaciones gp = new GestionParticipaciones();
+				
+				if(p==null) {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar una participacion","Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					int dialogResult = JOptionPane.showConfirmDialog (null, "¿Estas seguro de realizar esta accion?","Seguro?",JOptionPane.YES_NO_OPTION);
+					if(dialogResult == JOptionPane.YES_OPTION){
+						if(gp.borrarParticipacion(p)) {
+							JOptionPane.showMessageDialog(null, "Participacion borrada","Exito", JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al borrar la participacion (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+				
+				rellenarParticipaciones();
+			}
+		});
 	}
 	
 	public void desabilitarHabilitarElementos(boolean b) {

@@ -122,4 +122,29 @@ public class GestionParticipaciones {
 			return false;
 		}
 	}
+	public boolean borrarParticipacion(Participacion p) {
+		try {
+			String sql = "DELETE FROM `participacion` WHERE `participacion`.`id_deportista` = ? AND `participacion`.`id_evento` = ?";
+
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+
+			ps.setInt(1, p.getDeportista().getId());
+			ps.setInt(2, p.getEvento().getId());
+			
+			if (ps.executeUpdate() == 0) {
+				c.cerrarConexion();
+				ps.close();
+				return false;
+			} else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
 }

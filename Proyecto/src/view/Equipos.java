@@ -22,18 +22,26 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Equipos extends JDialog {
 	private DefaultListModel modelEquipos;
 	private JList listEquipos;
+	private JButton btnNuevo;
+	private JButton btnNewButton;
+	private JButton btnBorrar;
+	private JButton cancelButton;
 
 	/**
 	 * Create the dialog.
 	 */
 	public Equipos(java.awt.Frame parent, boolean modal) {
 		super(parent,modal);
+		setTitle("Equipos");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Equipos.class.getResource("/imagenes/olimpiadasLogo.png")));
 		
 		dibujar(parent);
+		eventos(parent);
 		
 		rellenarEquipos();
 	}
@@ -56,63 +64,20 @@ public class Equipos extends JDialog {
 			getContentPane().add(buttonPane, gbc_buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			{
-				JButton btnNuevo = new JButton("Nuevo");
-				btnNuevo.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true);
-						nee.setVisible(true);
-						rellenarEquipos();
-					}
-				});
+				btnNuevo = new JButton("Nuevo");
 				btnNuevo.setActionCommand("OK");
 				buttonPane.add(btnNuevo);
 			}
 			{
-				JButton btnNewButton = new JButton("Editar");
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						Equipo e = (Equipo) listEquipos.getSelectedValue();
-						
-						if(e==null) {
-							JOptionPane.showMessageDialog(null, "Debes seleccionar un equipo","Error", JOptionPane.ERROR_MESSAGE);
-						}else {
-							NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true, e);
-							nee.setVisible(true);
-							rellenarEquipos();
-						}
-					}
-				});
+				btnNewButton = new JButton("Editar");
 				buttonPane.add(btnNewButton);
 			}
 			{
-				JButton btnBorrar = new JButton("Borrar");
-				btnBorrar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						Equipo e = (Equipo) listEquipos.getSelectedValue();
-						GestionEquipos ge = new GestionEquipos();
-						
-						if(e==null) {
-							JOptionPane.showMessageDialog(null, "Debes seleccionar un equipo","Error", JOptionPane.ERROR_MESSAGE);
-						}else {
-							if(ge.borrarEquipo(e)) {
-								JOptionPane.showMessageDialog(null, "Equipo borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
-							}else {
-								JOptionPane.showMessageDialog(null, "Error al borrar el equipo (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
-							}
-						}
-						
-						rellenarEquipos();
-					}
-				});
+				btnBorrar = new JButton("Borrar");
 				buttonPane.add(btnBorrar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						dispose();
-					}
-				});
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -145,6 +110,58 @@ public class Equipos extends JDialog {
 				}
 			}
 		}
+	}
+
+	public void eventos(java.awt.Frame parent) {
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true);
+				nee.setVisible(true);
+				rellenarEquipos();
+			}
+		});
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Equipo e = (Equipo) listEquipos.getSelectedValue();
+				
+				if(e==null) {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un equipo","Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					NuevoEditarEquipo nee = new NuevoEditarEquipo(parent, true, e);
+					nee.setVisible(true);
+					rellenarEquipos();
+				}
+			}
+		});
+		
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Equipo e = (Equipo) listEquipos.getSelectedValue();
+				GestionEquipos ge = new GestionEquipos();
+				
+				if(e==null) {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un equipo","Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					int dialogResult = JOptionPane.showConfirmDialog (null, "¿Estas seguro de realizar esta accion?","Seguro?",JOptionPane.YES_NO_OPTION);
+					if(dialogResult == JOptionPane.YES_OPTION){
+						if(ge.borrarEquipo(e)) {
+							JOptionPane.showMessageDialog(null, "Equipo borrado","Exito", JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(null, "Error al borrar el equipo (Existen dependencias)","Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+				
+				rellenarEquipos();
+			}
+		});
+		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 	}
 	
 	public void rellenarEquipos() {

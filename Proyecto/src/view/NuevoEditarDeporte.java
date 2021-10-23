@@ -8,9 +8,11 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dao.GestionEquipos;
+import dao.GestionDeportes;
+import dao.GestionDeportes;
+import model.Deporte;
 import model.Deportista;
-import model.Equipo;
+import model.Deporte;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -25,12 +27,11 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class NuevoEditarEquipo extends JDialog {
+public class NuevoEditarDeporte extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNombre;
-	private JTextField tfIniciales;
-	private Equipo equipo;
+	private Deporte deporte;
 	private JButton okButton;
 	private JButton cancelButton;
 
@@ -38,15 +39,15 @@ public class NuevoEditarEquipo extends JDialog {
 	 * Create the dialog.
 	 * @wbp.parser.constructor
 	 */
-	public NuevoEditarEquipo(java.awt.Frame parent, boolean modal, Equipo e) {
+	public NuevoEditarDeporte(java.awt.Frame parent, boolean modal, Deporte d) {
 		super(parent,modal);
-		equipo = e;
+		deporte = d;
 		
 		dibujar();
 		eventos();
 	}
 	
-	public NuevoEditarEquipo(java.awt.Frame parent, boolean modal) {
+	public NuevoEditarDeporte(java.awt.Frame parent, boolean modal) {
 		super(parent,modal);
 		
 		dibujar();
@@ -54,7 +55,7 @@ public class NuevoEditarEquipo extends JDialog {
 	}
 
 	public void dibujar() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevoEditarEquipo.class.getResource("/imagenes/olimpiadasLogo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevoEditarDeporte.class.getResource("/imagenes/olimpiadasLogo.png")));
 		setBounds(100, 100, 201, 241);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,7 +67,7 @@ public class NuevoEditarEquipo extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel lblNewLabel = new JLabel("Equipo");
+			JLabel lblNewLabel = new JLabel("Deporte");
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 			gbc_lblNewLabel.gridwidth = 2;
@@ -95,24 +96,6 @@ public class NuevoEditarEquipo extends JDialog {
 			tfNombre.setColumns(10);
 		}
 		{
-			JLabel lblNewLabel_2 = new JLabel("Iniciales:");
-			GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-			gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 5);
-			gbc_lblNewLabel_2.gridx = 0;
-			gbc_lblNewLabel_2.gridy = 2;
-			contentPanel.add(lblNewLabel_2, gbc_lblNewLabel_2);
-		}
-		{
-			tfIniciales = new JTextField();
-			GridBagConstraints gbc_tfIniciales = new GridBagConstraints();
-			gbc_tfIniciales.fill = GridBagConstraints.HORIZONTAL;
-			gbc_tfIniciales.gridx = 1;
-			gbc_tfIniciales.gridy = 2;
-			contentPanel.add(tfIniciales, gbc_tfIniciales);
-			tfIniciales.setColumns(3);
-		}
-		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -129,12 +112,11 @@ public class NuevoEditarEquipo extends JDialog {
 			}
 		}
 		
-		if(equipo != null) {
-			tfNombre.setText(equipo.getNombre());
-			tfIniciales.setText(equipo.getIniciales());
-			setTitle("Editar Equipo");
+		if(deporte != null) {
+			tfNombre.setText(deporte.getNombre());
+			setTitle("Editar Deporte");
 		}else {
-			setTitle("Nuevo Equipo");
+			setTitle("Nuevo Deporte");
 		}
 	}
 
@@ -155,32 +137,28 @@ public class NuevoEditarEquipo extends JDialog {
 	
 	public void guardar() {
 		String nombre = tfNombre.getText();
-		String inicales = tfIniciales.getText();
 		
-		if(nombre.equals("") || inicales.equals("")) {
+		if(nombre.equals("")) {
 			JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos","Error", JOptionPane.ERROR_MESSAGE);
-		}else if(inicales.length()>3) {
-			JOptionPane.showMessageDialog(null, "Las iniciales no deben tener mas de 3 caracteres","Error", JOptionPane.ERROR_MESSAGE);
 		}else {
-			Equipo e = new Equipo();
-			e.setIniciales(inicales);
-			e.setNombre(nombre);
+			Deporte d = new Deporte();
+			d.setNombre(nombre);
 			
-			GestionEquipos ge = new GestionEquipos();
-			if(equipo==null) {
-				if(ge.nuevoEquipo(e)) {
-					JOptionPane.showMessageDialog(null, "Equipo creado","Exito", JOptionPane.INFORMATION_MESSAGE);
+			GestionDeportes ge = new GestionDeportes();
+			if(deporte==null) {
+				if(ge.nuevoDeporte(d)) {
+					JOptionPane.showMessageDialog(null, "deporte creado","Exito", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}else {
-					JOptionPane.showMessageDialog(null, "Error al crear el equipo","Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error al crear el deporte","Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}else {
-				e.setId(equipo.getId());
-				if(ge.editarEquipo(e)) {
-					JOptionPane.showMessageDialog(null, "Equipo editado","Exito", JOptionPane.INFORMATION_MESSAGE);
+				d.setId(deporte.getId());
+				if(ge.editarDeporte(d)) {
+					JOptionPane.showMessageDialog(null, "deporte editado","Exito", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}else {
-					JOptionPane.showMessageDialog(null, "Error al editar el Equipo","Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error al editar el deporte","Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

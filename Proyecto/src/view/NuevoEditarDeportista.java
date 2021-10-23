@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -49,15 +51,18 @@ public class NuevoEditarDeportista extends JDialog {
 		deportista = d;
 		
 		dibujar();
+		eventos();
 	}
 	
 	public NuevoEditarDeportista(java.awt.Frame parent, boolean modal) {
 		super(parent,modal);
 		
 		dibujar();
+		eventos();
 	}
 
 	public void dibujar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevoEditarDeportista.class.getResource("/imagenes/olimpiadasLogo.png")));
 		setBounds(100, 100, 236, 282);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -155,19 +160,9 @@ public class NuevoEditarDeportista extends JDialog {
 		contentPane.add(panel, gbc_panel);
 		
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				guardar();
-			}
-		});
 		panel.add(btnGuardar);
 		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+		btnCancelar = new JButton("Cancelar");		
 		panel.add(btnCancelar);
 		
 		if(deportista != null) {
@@ -175,7 +170,24 @@ public class NuevoEditarDeportista extends JDialog {
 			cbSexo.setSelectedItem(deportista.getSexo());;
 			spAltura.setValue(deportista.getAltura());
 			spPeso.setValue(deportista.getPeso());
+			setTitle("Editar Deportista");
+		}else {
+			setTitle("Nuevo Deportista");
 		}
+	}
+
+	public void eventos() {
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guardar();
+			}
+		});
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 
 	public void guardar() {

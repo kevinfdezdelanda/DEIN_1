@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -40,6 +42,10 @@ public class NuevoEditarEvento extends javax.swing.JDialog {
 	private DefaultComboBoxModel modeloDeporte;
 	private java.awt.Frame parent;
 	private JTextField txtCrearDeporte;
+	private JButton btnNuevoDeporte;
+	private JButton btnNuevaOlimpiada;
+	private JButton btnAceptar;
+	private JButton btnCancelar;
 	
 	/**
 	 * @wbp.parser.constructor
@@ -49,6 +55,7 @@ public class NuevoEditarEvento extends javax.swing.JDialog {
 		this.parent = parent;
 		this.olimpiada = o;
 		dibujar();
+		eventos();
 	}
 	
 	public NuevoEditarEvento(java.awt.Frame parent, boolean modal, Evento e) {
@@ -56,9 +63,11 @@ public class NuevoEditarEvento extends javax.swing.JDialog {
 		this.evento = e;
 		olimpiada = e.getOlimpiada();
 		dibujar();
+		eventos();
 	}
 
 	public void dibujar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(NuevoEditarEvento.class.getResource("/imagenes/olimpiadasLogo.png")));
 		setBounds(100, 100, 519, 185);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -113,25 +122,7 @@ public class NuevoEditarEvento extends javax.swing.JDialog {
 		
 		rellenarDeporte();
 		
-		JButton btnNuevoDeporte = new JButton("Nuevo");
-		btnNuevoDeporte.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String nombre = txtCrearDeporte.getText();
-				if(nombre.equals("")) {
-					JOptionPane.showMessageDialog(null, "El nombre del deporte no puede estar vacio","Error", JOptionPane.ERROR_MESSAGE);
-				}else {
-					GestionDeportes gd = new GestionDeportes();
-					Deporte d = new Deporte();
-					d.setNombre(nombre);
-					if(gd.nuevoDeporte(d)) {
-						JOptionPane.showMessageDialog(null, "Deporte creado","Exito", JOptionPane.INFORMATION_MESSAGE);
-						rellenarDeporte();
-					}else {
-						JOptionPane.showMessageDialog(null, "Error al crear el deporte","Error", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-		});
+		btnNuevoDeporte = new JButton("Nuevo");
 		
 		JLabel lblNombreDeporteA = new JLabel("Crear deporte:");
 		GridBagConstraints gbc_lblNombreDeporteA = new GridBagConstraints();
@@ -179,19 +170,12 @@ public class NuevoEditarEvento extends javax.swing.JDialog {
 		
 		rellenarOlimpiadas();
 		
-		JButton btnNuevaOlimpiada = new JButton("Nuevo");
+		btnNuevaOlimpiada = new JButton("Nuevo");
 		GridBagConstraints gbc_btnNuevaOlimpiada = new GridBagConstraints();
 		gbc_btnNuevaOlimpiada.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNuevaOlimpiada.gridx = 3;
 		gbc_btnNuevaOlimpiada.gridy = 3;
 		contentPane.add(btnNuevaOlimpiada, gbc_btnNuevaOlimpiada);
-		btnNuevaOlimpiada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				NuevaEditarOlimpiada neo = new NuevaEditarOlimpiada(parent,true);
-				neo.setVisible(true);
-				rellenarOlimpiadas();
-			}
-		});
 		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -208,30 +192,68 @@ public class NuevoEditarEvento extends javax.swing.JDialog {
 		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnAceptar.gridx = 2;
 		gbc_btnAceptar.gridy = 0;
 		panel.add(btnAceptar, gbc_btnAceptar);
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				guardar();
-			}
-		});
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCancelar.anchor = GridBagConstraints.NORTHEAST;
 		gbc_btnCancelar.gridx = 0;
 		gbc_btnCancelar.gridy = 0;
 		panel.add(btnCancelar, gbc_btnCancelar);
+		
+	}
+
+	public void eventos() {
+		btnNuevoDeporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nombre = txtCrearDeporte.getText();
+				if(nombre.equals("")) {
+					JOptionPane.showMessageDialog(null, "El nombre del deporte no puede estar vacio","Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					GestionDeportes gd = new GestionDeportes();
+					Deporte d = new Deporte();
+					d.setNombre(nombre);
+					if(gd.nuevoDeporte(d)) {
+						JOptionPane.showMessageDialog(null, "Deporte creado","Exito", JOptionPane.INFORMATION_MESSAGE);
+						rellenarDeporte();
+					}else {
+						JOptionPane.showMessageDialog(null, "Error al crear el deporte","Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+		
+		btnNuevaOlimpiada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NuevaEditarOlimpiada neo = new NuevaEditarOlimpiada(parent,true);
+				neo.setVisible(true);
+				rellenarOlimpiadas();
+			}
+		});
+		
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				guardar();
+			}
+		});
+		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
+		
+		if(evento==null) {
+			setTitle("Nuevo Evento");
+		}else {
+			setTitle("Editar Evento");
+		}
 	}
 
 	public void rellenarDeporte() {
