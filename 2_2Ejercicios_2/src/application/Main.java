@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import util.CambiarIdioma;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -17,7 +18,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Locale locale = new Locale("en", "GB");
+			Locale locale = new Locale(CambiarIdioma.getValor("val1"), CambiarIdioma.getValor("val2"));
 			ResourceBundle bundle = ResourceBundle.getBundle("/util/messages", locale);
 			GridPane root = (GridPane)FXMLLoader.load(getClass().getResource("/fxml/Ej1Fxml.fxml"), bundle);
 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/imagenes/icono.png")));

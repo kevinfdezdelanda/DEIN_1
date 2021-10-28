@@ -67,6 +67,9 @@ public class Ej1FxmlController implements Initializable{
 					alert.showAndWait();
 				}else {
 					personas.add(p);
+					txtNombre.setText("");
+					txtApellidos.setText("");
+					txtEdad.setText("");
 				}
 				
 			}catch (NumberFormatException e) {
