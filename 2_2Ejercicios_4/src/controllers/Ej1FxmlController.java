@@ -43,9 +43,9 @@ public class Ej1FxmlController implements Initializable{
 	public void agregrar(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/agregarPersona.fxml"));
+			Parent root = loader.load();
 			agregarPersonaController controlador = loader.getController();
 			controlador.setPersonas(personas);
-			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
