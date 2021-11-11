@@ -1,0 +1,52 @@
+.botones {
+	-fx-background-color: yellow;
+}
+
+.fondo {
+	-fx-background-image: url("../../src/imagenes/fuego.jpg");
+}
+
+.tabla {
+	-fx-color: white;
+	fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+	-fx-background-color: transparent;
+	-fx-color: white;
+}
+
+.label {
+	-fx-background-color: yellow;
+}
+
+.fondoTabla {
+	-fx-background-image: url("../../src/imagenes/rosa.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+.table-view {
+	-fx-control-inner-background: transparent;
+	-fx-background-color: transparent;
+	-fx-table-cell-border-color: transparent;
+	-fx-table-header-border-color: transparent;
+	-fx-background-image: url("../../src/imagenes/rosa.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+.table-view .column-header-background {
+	-fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+	-
+}
+
+.table-view .column-header .label {
+	-fx-font-size: 20px;
+	-fx-alignment: center-left;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+	-fx-background-color: -fx-focus-color;
+}
