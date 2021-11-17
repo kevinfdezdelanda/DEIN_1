@@ -5,8 +5,12 @@ module ProyectoFX {
 	requires javafx.graphics;
 	requires java.sql;
 	requires java.desktop;
+
+	exports application;
+	exports controllers;
+	exports model;
 	
 	opens application to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
-	opens modelo to javafx.base;
+	opens model to javafx.base;
 }
