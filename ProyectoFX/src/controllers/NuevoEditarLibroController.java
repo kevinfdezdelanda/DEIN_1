@@ -62,19 +62,37 @@ public class NuevoEditarLibroController implements Initializable{
 			l.setTitulo(titulo);
 			l.setEstado(cbEstado.getSelectionModel().getSelectedItem());
 			
-			if(gl.nuevoLibro(l)) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setHeaderText(null);
-				alert.setTitle("Exito");
-				alert.setContentText("Libro creado");
-				alert.showAndWait();
+			if(libro==null) {
+				if(gl.nuevoLibro(l)) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setHeaderText(null);
+					alert.setTitle("Exito");
+					alert.setContentText("Libro creado");
+					alert.showAndWait();
+				}else {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setHeaderText(null);
+					alert.setTitle("Error");
+					alert.setContentText("Error al crear el libro");
+					alert.showAndWait();
+				}
 			}else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setHeaderText(null);
-				alert.setTitle("Error");
-				alert.setContentText("Errir al crear el libro");
-				alert.showAndWait();
+				l.setCodigo(libro.getCodigo());
+				if(gl.editarLibro(l)) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setHeaderText(null);
+					alert.setTitle("Exito");
+					alert.setContentText("Libro editado");
+					alert.showAndWait();
+				}else {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setHeaderText(null);
+					alert.setTitle("Error");
+					alert.setContentText("Error al editar el libro");
+					alert.showAndWait();
+				}
 			}
+			
 			
 			Stage myStage = (Stage) this.btnCancelar.getScene().getWindow();
 			myStage.close();
@@ -97,5 +115,17 @@ public class NuevoEditarLibroController implements Initializable{
 				"Restaurado"));
 		
 		cbEstado.getSelectionModel().select(0);
+		
+		
+	}
+	
+	public void setLibro(Libro l) {
+		libro = l;
+		
+		tfTitulo.setText(libro.getTitulo());
+		tfEditorial.setText(libro.getEditorial());
+		tfAutor.setText(libro.getAutor());
+		
+		cbEstado.getSelectionModel().select(libro.getEstado());;
 	}
 }

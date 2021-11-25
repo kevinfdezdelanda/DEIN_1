@@ -72,6 +72,10 @@ public class Alumno {
 		return true;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return apellido1 + " " + apellido2 + " - " + nombre;
+	}
 	
 }

@@ -47,7 +47,31 @@ public class GestionLibros {
 	}
 	
 	public boolean nuevoLibro(Libro l) {
-		return true;
+		try {
+			String sql = "INSERT INTO `libros`.`Libro` (`Titulo`, `Autor`, `Editorial`, `Estado`, `Baja`) VALUES (?, ?, ?, ?, ?);";
+			
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+			
+			ps.setString(1, l.getTitulo());
+			ps.setString(2, l.getAutor());
+			ps.setString(3, l.getEditorial());
+			ps.setString(4, l.getEstado());
+			ps.setInt(5, l.getBaja());
+			
+			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();	
+				return false;
+			}else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+		}catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
 	}
 	
 	public boolean editarLibro(Libro l) {

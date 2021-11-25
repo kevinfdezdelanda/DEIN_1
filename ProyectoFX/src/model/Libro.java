@@ -76,5 +76,11 @@ public class Libro {
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return titulo + " - " + autor;
+	}
+	
 	
 }
