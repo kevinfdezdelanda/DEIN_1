@@ -191,7 +191,7 @@ public class PrestarLibroController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		GestionLibros gl = new GestionLibros();
-		ArrayList<Libro> libros = gl.getLibrosNoBaja();
+		ArrayList<Libro> libros = gl.getLibrosNoBajaNoPrestado();
 		
 		ObservableList<Libro>  olLibro = FXCollections.observableArrayList();
 		olLibro.addAll(libros);

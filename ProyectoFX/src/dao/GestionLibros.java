@@ -13,12 +13,12 @@ public class GestionLibros {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ArrayList<Libro> getLibrosNoBaja(){
+	public ArrayList<Libro> getLibrosNoBajaNoPrestado(){
 		
 		ArrayList<Libro> Libros = new ArrayList<Libro>();
 		try {
 			ConexionDB c = new ConexionDB();
-			String sql = "SELECT * FROM libros.Libro where baja = 0";
+			String sql = "SELECT * FROM libros.Libro where baja = 0 and codigo NOT IN (SELECT codigo_libro from libros.prestamo) ";
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			//ResultSet rs = c.ejecutarConsulta(sql);
@@ -75,10 +75,55 @@ public class GestionLibros {
 	}
 	
 	public boolean editarLibro(Libro l) {
-		return true;
+		try {
+			String sql = "UPDATE `libro` SET `Titulo` = ?, `Autor` = ?, `Editorial` = ?, `Estado` = ?, `Baja` = ? WHERE `libro`.`codigo` = ?; ";
+			
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+			
+			ps.setString(1, l.getTitulo());
+			ps.setString(2, l.getAutor());
+			ps.setString(3, l.getEditorial());
+			ps.setString(4, l.getEstado());
+			ps.setInt(5, l.getBaja());
+			ps.setInt(6, l.getCodigo());
+			
+			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();	
+				return false;
+			}else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+		}catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
 	}
 	
 	public boolean borrarLibro(Libro l) {
-		return true;
+		try {
+			String sql = "UPDATE `libro` SET `Baja` = 1 WHERE `libro`.`codigo` = ?; ";
+			
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+			
+			ps.setInt(1, l.getCodigo());
+			
+			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();	
+				return false;
+			}else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+		}catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
 	}
 }

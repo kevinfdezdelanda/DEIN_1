@@ -3,10 +3,10 @@ package model;
 import java.sql.Date;
 
 public class HistorioPrestamos {
-	private int id_prestamo;
+	private int idPrestamo;
 	private Alumno alumno;
 	private Libro libro;
-	private Date fecha_prestamo, fecha_devolucion;
+	private Date fechaPrestamo, fechaDevolucion;
 	
 	public HistorioPrestamos() {
 		// TODO Auto-generated constructor stub
@@ -14,19 +14,19 @@ public class HistorioPrestamos {
 
 	public HistorioPrestamos(int id_prestamo, Alumno alumno, Libro libro, Date fecha_prestamo, Date fecha_devolucion) {
 		super();
-		this.id_prestamo = id_prestamo;
+		this.idPrestamo = id_prestamo;
 		this.alumno = alumno;
 		this.libro = libro;
-		this.fecha_prestamo = fecha_prestamo;
-		this.fecha_devolucion = fecha_devolucion;
+		this.fechaPrestamo = fecha_prestamo;
+		this.fechaDevolucion = fecha_devolucion;
 	}
 
-	public int getId_prestamo() {
-		return id_prestamo;
+	public int getIdPrestamo() {
+		return idPrestamo;
 	}
 
-	public void setId_prestamo(int id_prestamo) {
-		this.id_prestamo = id_prestamo;
+	public void setIdPrestamo(int id_prestamo) {
+		this.idPrestamo = id_prestamo;
 	}
 
 	public Alumno getAlumno() {
@@ -45,27 +45,27 @@ public class HistorioPrestamos {
 		this.libro = libro;
 	}
 
-	public Date getFecha_prestamo() {
-		return fecha_prestamo;
+	public Date getFechaPrestamo() {
+		return fechaPrestamo;
 	}
 
-	public void setFecha_prestamo(Date fecha_prestamo) {
-		this.fecha_prestamo = fecha_prestamo;
+	public void setFechaPrestamo(Date fecha_prestamo) {
+		this.fechaPrestamo = fecha_prestamo;
 	}
 
-	public Date getFecha_devolucion() {
-		return fecha_devolucion;
+	public Date getFechaDevolucion() {
+		return fechaDevolucion;
 	}
 
-	public void setFecha_devolucion(Date fecha_devolucion) {
-		this.fecha_devolucion = fecha_devolucion;
+	public void setFechaDevolucion(Date fecha_devolucion) {
+		this.fechaDevolucion = fecha_devolucion;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id_prestamo;
+		result = prime * result + idPrestamo;
 		return result;
 	}
 
@@ -78,7 +78,7 @@ public class HistorioPrestamos {
 		if (getClass() != obj.getClass())
 			return false;
 		HistorioPrestamos other = (HistorioPrestamos) obj;
-		if (id_prestamo != other.id_prestamo)
+		if (idPrestamo != other.idPrestamo)
 			return false;
 		return true;
 	}
