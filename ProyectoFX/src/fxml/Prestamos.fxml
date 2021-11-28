@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1252.0" stylesheets="@../css/estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PrestamosController">
   <columnConstraints>
@@ -23,7 +24,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="1252.0" GridPane.rowIndex="1">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="1252.0" styleClass="separacion" GridPane.rowIndex="1">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.0" minWidth="10.0" prefWidth="562.0" />
             <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="598.0" minWidth="0.0" prefWidth="49.0" />
@@ -109,16 +110,25 @@
                      <GridPane.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-plus" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btnEditarLibro" mnemonicParsing="false" onAction="#editarLibro" prefHeight="31.0" prefWidth="186.0" text="Editar libro" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-edit" />
+                     </graphic>
                   </Button>
                   <Button fx:id="btnBorrarLibro" mnemonicParsing="false" onAction="#borrarLibro" prefHeight="31.0" prefWidth="208.0" text="Borrar libro" GridPane.rowIndex="5" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-trash" />
+                     </graphic>
                   </Button>
                   <TextField fx:id="buscarLibro" GridPane.rowIndex="2">
                      <GridPane.margin>
@@ -128,9 +138,6 @@
                </children>
             </GridPane>
          </children>
-         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-         </padding>
       </GridPane>
       <MenuBar>
         <menus>
