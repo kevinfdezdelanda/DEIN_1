@@ -144,6 +144,7 @@ public class HistorioPrestamosController implements Initializable{
 		cargarHistorioPrestamos();
 	}
 	
+	
 	public void cargarHistorioPrestamos() {
 		GestionHistorioPrestamos gh = new GestionHistorioPrestamos();
 		
