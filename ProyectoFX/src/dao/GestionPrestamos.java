@@ -41,6 +41,7 @@ public class GestionPrestamos {
 				l.setBaja(rs.getInt("Baja"));
 				
 				p.setFechaPrestamo(rs.getDate("fecha_prestamo"));
+				p.setId(rs.getInt("id_prestamo"));
 				p.setAlumno(a);
 				p.setLibro(l);
 				
@@ -67,6 +68,30 @@ public class GestionPrestamos {
 			ps.setString(1, p.getAlumno().getDni());
 			ps.setInt(2, p.getLibro().getCodigo());
 			ps.setDate(3, p.getFechaPrestamo());
+			
+			if(ps.executeUpdate()==0) {
+				c.cerrarConexion();
+				ps.close();	
+				return false;
+			}else {
+				c.cerrarConexion();
+				ps.close();
+				return true;
+			}
+		}catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean borrarPrestamo(Prestamo p) {
+		try {
+			String sql = "DELETE FROM `prestamo` WHERE `prestamo`.`id_prestamo` = ?";
+			
+			ConexionDB c = new ConexionDB();
+			PreparedStatement ps = c.getConexion().prepareStatement(sql);
+			
+			ps.setInt(1, p.getId());
 			
 			if(ps.executeUpdate()==0) {
 				c.cerrarConexion();

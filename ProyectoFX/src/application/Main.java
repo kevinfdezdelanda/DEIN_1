@@ -14,7 +14,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			GridPane root = (GridPane)FXMLLoader.load(getClass().getResource("/fxml/Prestamos.fxml"));
-			primaryStage.setTitle("Prestamos");
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/imagenes/icono.png")));
+			primaryStage.setTitle("Prestamo de libros");
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

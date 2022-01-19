@@ -10,6 +10,10 @@ module ProyectoFX {
 	exports controllers;
 	exports model;
 	
+	requires org.kordamp.ikonli.core;
+    requires org.kordamp.ikonli.fontawesome5;
+    requires org.kordamp.ikonli.javafx;
+	
 	opens application to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
 	opens model to javafx.base;
