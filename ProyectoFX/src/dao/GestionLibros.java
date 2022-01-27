@@ -18,7 +18,7 @@ public class GestionLibros {
 		ArrayList<Libro> Libros = new ArrayList<Libro>();
 		try {
 			ConexionDB c = new ConexionDB();
-			String sql = "SELECT * FROM libros.Libro where baja = 0 and codigo NOT IN (SELECT codigo_libro from libros.prestamo) ";
+			String sql = "SELECT * FROM libros.Libro where baja = 0 and codigo NOT IN (SELECT codigo_libro from libros.Prestamo) ";
 			PreparedStatement ps = c.getConexion().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			//ResultSet rs = c.ejecutarConsulta(sql);

@@ -53,13 +53,13 @@ public class Ej2Controller {
 					
 			if(informe3.isSelected()) {	
 				JasperReport report = (JasperReport) JRLoader
-						.loadObject(getClass().getResource("/informes/calculosPersonas.jasper"));
+						.loadObject(getClass().getResource("/informes/subInformesPersonas.jasper"));
 				JasperPrint jprint = JasperFillManager.fillReport(report, null, con.getConexion());
 				JasperViewer viewer = new JasperViewer(jprint, false);
 				viewer.setVisible(true);
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	// Event Listener on Button[#btnCancelar].onAction

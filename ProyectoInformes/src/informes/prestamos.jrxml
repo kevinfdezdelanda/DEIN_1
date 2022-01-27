@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prestamos" pageWidth="595" pageHeight="842" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="CODIGO_LIBRO" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT p.id_prestamo, p.fecha_prestamo, p.fecha_devolucion, a.dni, a.nombre, a.apellido1, a.apellido2 
+FROM libros.Historico_prestamo p, libros.Alumno a 
+where a.dni = p.dni_alumno and p.codigo_libro = $P{CODIGO_LIBRO}]]>
+	</queryString>
+	<field name="id_prestamo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_prestamo"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_prestamo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="fecha_prestamo" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_prestamo"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_prestamo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="fecha_devolucion" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_devolucion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_devolucion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="10" y="0" width="534" height="20" forecolor="#FFFCFC" backcolor="#D0B48E" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[PRESTAMOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="10" y="15" width="535" height="2" uuid="e9d2002a-c8ee-4649-a258-640dad29110c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="10" y="0" width="70" height="15" forecolor="#736343" uuid="cd71f354-c421-4949-9620-203f0a536ba4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="97cb2417-25fd-46b7-8233-c42acea58200"/>
+				</reportElement>
+				<text><![CDATA[id_prestamo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="80" y="0" width="120" height="15" forecolor="#736343" uuid="524e591b-119e-4050-9e62-9977cc6f5b90">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="141dfc70-b363-4866-8d12-fa0f10ff2ca5"/>
+				</reportElement>
+				<text><![CDATA[fecha prestamo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="1" width="130" height="15" forecolor="#736343" uuid="be22b6f9-6045-4ddb-9734-64b74159deae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a9185c63-5b88-4f96-a68c-a089b0713b57"/>
+				</reportElement>
+				<text><![CDATA[fecha devolucion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="315" y="1" width="230" height="15" forecolor="#736343" uuid="6722a7f8-b8be-4874-b9c4-a0d186d4475b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b479a9a9-476c-41bb-9b19-b94143ee1426"/>
+				</reportElement>
+				<text><![CDATA[Alumno]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="10" y="0" width="534" height="15" uuid="fa7cec56-4ec1-48e6-a26e-7266a995d174"/>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="0" y="0" width="70" height="15" uuid="ba85c203-dc65-44d6-ac72-7bd1b0343ee9">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="97cb2417-25fd-46b7-8233-c42acea58200"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{id_prestamo}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="70" y="0" width="120" height="15" uuid="fb1fae1b-646f-4e29-9885-9265c5e20489">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="141dfc70-b363-4866-8d12-fa0f10ff2ca5"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date($F{fecha_prestamo}.getTime()))]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="190" y="0" width="114" height="15" uuid="6464ae4f-de2d-4dde-95bb-e36d26ddac8d">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a9185c63-5b88-4f96-a68c-a089b0713b57"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date($F{fecha_devolucion}.getTime()))]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="305" y="0" width="229" height="15" uuid="d6f53ac4-b1f9-4738-8335-8f241ff87720">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b479a9a9-476c-41bb-9b19-b94143ee1426"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{dni} + " | " + $F{nombre} + " " + $F{apellido1} + " " + $F{apellido2}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

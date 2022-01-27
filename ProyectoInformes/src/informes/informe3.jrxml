@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe3" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="889e8932-7ac8-4da2-9451-8f4c745d09b5">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[select * from libros.Alumno]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="643" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="100" width="595" height="200" uuid="45fa3afa-8f10-4bb5-932b-435f86ae9150"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["grafico_numPrestamosAlumnos.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="-20" y="310" width="595" height="200" uuid="bd55626a-7ef7-42ca-8e48-81feab7238cc"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["grafico_numPrestamosLibros.jasper"]]></subreportExpression>
+			</subreport>
+			<image>
+				<reportElement x="30" y="0" width="109" height="100" uuid="84fab962-c358-4904-af96-fa403a324dd0"/>
+				<imageExpression><![CDATA["/src/imagenes/icono.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="170" y="0" width="263" height="62" uuid="9000da81-2e8c-48f2-b393-ef005b5727e9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[SansSerif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="62" width="196" height="22" uuid="bc199b6e-5260-459b-b625-d5d33bcb9d86"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Libreria]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

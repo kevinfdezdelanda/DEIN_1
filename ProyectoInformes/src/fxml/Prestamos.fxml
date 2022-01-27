@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1252.0" stylesheets="@../css/estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PrestamosController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="1252.0" styleClass="separacion" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.0" minWidth="10.0" prefWidth="562.0" />
+            <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="598.0" minWidth="0.0" prefWidth="49.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="756.0" minWidth="10.0" prefWidth="370.0" />
+            <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="756.0" minWidth="10.0" prefWidth="49.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="372.0" minWidth="0.0" prefWidth="180.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="195.0" minHeight="55.0" prefHeight="55.0" vgrow="NEVER" />
+            <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+         </rowConstraints>
+         <children>
+            <Label styleClass="titulo" stylesheets="@../css/estilo.css" text="Prestamos">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tablaPrestamos" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn fx:id="colAlumno" prefWidth="206.0" text="Alumno" />
+                  <TableColumn fx:id="colLibro" prefWidth="206.0" text="Libro" />
+                  <TableColumn fx:id="colFecha" prefWidth="134.0" text="Fecha Prestamo" />
+               </columns>
+            </TableView>
+            <GridPane GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="btnHistorial" mnemonicParsing="false" onAction="#verHistorial" prefHeight="31.0" prefWidth="303.0" text="Historial prestamos" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnDevolver" mnemonicParsing="false" onAction="#devolverLibro" prefHeight="31.0" prefWidth="291.0" text="Devolver libro" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <TableView fx:id="tablaLibros" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn fx:id="colTitulo" prefWidth="107.0" text="Titulo" />
+                  <TableColumn fx:id="colAutor" prefWidth="95.0" text="Autor" />
+                  <TableColumn fx:id="colEditorial" prefWidth="76.0" text="Editorial" />
+                  <TableColumn fx:id="colEstado" prefWidth="76.0" text="Estado" />
+               </columns>
+            </TableView>
+            <Label styleClass="titulo" text="Libros no prestados" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnPrestar" mnemonicParsing="false" onAction="#prestarLibro" prefHeight="31.0" prefWidth="393.0" text="Prestar libro" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <GridPane GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="-Infinity" vgrow="NEVER" />
+                  <RowConstraints maxHeight="248.0" minHeight="-Infinity" />
+                  <RowConstraints maxHeight="248.0" minHeight="-Infinity" />
+                  <RowConstraints percentHeight="0.0" />
+                  <RowConstraints percentHeight="0.0" />
+                  <RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="301.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="301.0" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <Label text="Buscar Libro">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnNueboLibro" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="31.0" prefWidth="262.0" text="Nuevo libro" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-plus" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnEditarLibro" mnemonicParsing="false" onAction="#editarLibro" prefHeight="31.0" prefWidth="186.0" text="Editar libro" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-edit" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnBorrarLibro" mnemonicParsing="false" onAction="#borrarLibro" prefHeight="31.0" prefWidth="208.0" text="Borrar libro" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="fas-trash" />
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="buscarLibro" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="btnInformes" mnemonicParsing="false" onAction="#verInformes" prefHeight="31.0" prefWidth="208.0" text="Informes" GridPane.rowIndex="6">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-scroll" />
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Alumnos">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#verAlumnos" text="Todos los alumnos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</GridPane>

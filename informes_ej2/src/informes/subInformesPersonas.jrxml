@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subInformesPersonas" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bb9ba02a-125c-4002-a57a-26511c1dc5a4">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter "/>
 	<queryString language="SQL">
 		<![CDATA[select * from persona]]>
 	</queryString>
@@ -52,33 +52,37 @@
 		<band height="13"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="21">
+		<band height="21"/>
+	</columnHeader>
+	<detail>
+		<band height="239">
+			<subreport>
+				<reportElement x="0" y="30" width="250" height="40" uuid="80f64bde-8e7b-4ad1-8184-cb93e14552d7"/>
+				<subreportParameter name="DNI">
+					<subreportParameterExpression><![CDATA[$F{dni}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["src/informes/subInformeEmail.jasper"]]></subreportExpression>
+			</subreport>
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="9d9f15d3-1b77-4dae-b54b-2a535158c072"/>
+				<reportElement x="-15" y="25" width="595" height="1" forecolor="#666666" uuid="329ceb8f-3d7e-4f42-9e95-933fd4f8bb06"/>
 			</line>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="0" y="1" width="111" height="20" uuid="9217af3e-23a7-4d01-92a1-52a2adf2b5e8">
+				<reportElement x="5" y="6" width="445" height="20" uuid="febab3d2-3676-49d2-b624-664c132affda">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="609fe0e6-1afa-474d-91e0-68c86b997208"/>
 				</reportElement>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre} +" "+ $F{apellido1} +" "+ $F{apellido2}]]></textFieldExpression>
 			</textField>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="220">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="c33fedc2-05f5-4b3d-9b5b-220352673d36"/>
-			</line>
 			<subreport>
-				<reportElement x="0" y="20" width="200" height="200" uuid="aab919c0-a89b-4ba9-a1b7-3e726a488f93"/>
-				<subreportParameter name="dni">
+				<reportElement x="304" y="30" width="250" height="40" uuid="5509b61a-e81c-48b8-bd28-c87466cebe61"/>
+				<subreportParameter name="DNI">
 					<subreportParameterExpression><![CDATA[$F{dni}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["subInformeEmail.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["subInformeTelefonos.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

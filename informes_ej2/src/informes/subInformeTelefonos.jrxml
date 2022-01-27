@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subInformeEmail" pageWidth="250" pageHeight="500" columnWidth="210" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9a81f0e-5e94-4230-84f2-5c1948eeaf5a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter "/>
+	<parameter name="DNI" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from telefono where dni = $P{DNI}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="email"/>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="email"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="net.sf.jasperreports.sql.field.column.name" value="telefono"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="0" width="250" height="30" forecolor="#2730CF" backcolor="#ADADAD" uuid="ec103757-30a4-4d52-b283-aa76eee6ca72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Telefonos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="0" width="250" height="20" uuid="9e6f6ebf-49fb-47e3-b75f-7b1e655f49c5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="21" width="250" height="1" uuid="1d9162ab-3791-4e02-92a3-9ec0eb94aba7"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
