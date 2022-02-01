@@ -145,13 +145,14 @@
             </GridPane>
          </children>
       </GridPane>
-      <MenuBar>
+      <MenuBar fx:id="menuAyuda">
         <menus>
           <Menu mnemonicParsing="false" text="Alumnos">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#verAlumnos" text="Todos los alumnos" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" onAction="#verAyuda" text="Ayuda" />
         </menus>
       </MenuBar>
    </children>

@@ -23,7 +23,7 @@ FROM libros.Historico_prestamo group by fecha_prestamo]]>
 		<band height="396" splitType="Stretch">
 			<timeSeriesChart>
 				<chart evaluationTime="Report">
-					<reportElement x="-20" y="20" width="595" height="376" uuid="56c56e41-d6bd-47fa-84b7-d1b2702a7eab"/>
+					<reportElement x="-20" y="60" width="595" height="336" uuid="8f32097c-e9db-4f21-a55f-a457de68ce9e"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -31,9 +31,10 @@ FROM libros.Historico_prestamo group by fecha_prestamo]]>
 				<timeSeriesDataset>
 					<dataset resetType="Report"/>
 					<timeSeries>
-						<seriesExpression><![CDATA["SERIES 1"]]></seriesExpression>
+						<seriesExpression><![CDATA["num prestamos"]]></seriesExpression>
 						<timePeriodExpression><![CDATA[$F{fecha_prestamo}]]></timePeriodExpression>
 						<valueExpression><![CDATA[$F{count(id_prestamo)}]]></valueExpression>
+						<labelExpression><![CDATA["num prestamos"]]></labelExpression>
 					</timeSeries>
 				</timeSeriesDataset>
 				<timeSeriesPlot>
@@ -46,6 +47,13 @@ FROM libros.Historico_prestamo group by fecha_prestamo]]>
 					</valueAxisFormat>
 				</timeSeriesPlot>
 			</timeSeriesChart>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="0" width="595" height="50" forecolor="#FFFCFC" backcolor="#D0B48E" uuid="8840be2b-2c40-47e4-8029-f48448281caf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="27"/>
+				</textElement>
+				<text><![CDATA[Numero de prestamos por fecha]]></text>
+			</staticText>
 		</band>
 	</title>
 </jasperReport>

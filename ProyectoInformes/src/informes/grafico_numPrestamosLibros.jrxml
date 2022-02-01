@@ -50,10 +50,10 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="248" splitType="Stretch">
+		<band height="367" splitType="Stretch">
 			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="-20" y="0" width="595" height="248" uuid="5a7c3e2b-3c53-430a-a8aa-dfd5efb0c115">
+					<reportElement x="-20" y="100" width="595" height="248" uuid="5a7c3e2b-3c53-430a-a8aa-dfd5efb0c115">
 						<property name="net.sf.jasperreports.customizer.0.minValue" value="0"/>
 						<property name="net.sf.jasperreports.customizer.0.tickUnit" value="1.0"/>
 						<property name="net.sf.jasperreports.customizer.class.0" value="net.sf.jasperreports.customizers.axis.RangeAxisCustomizer"/>
@@ -82,10 +82,17 @@
 					</valueAxisFormat>
 				</barPlot>
 			</barChart>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="14" width="595" height="50" forecolor="#FFFCFC" backcolor="#D0B48E" uuid="6c7f9633-634b-404d-8f87-ff8d0c59ce8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="27"/>
+				</textElement>
+				<text><![CDATA[Numero de prestamos por libro]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="2" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band splitType="Stretch"/>

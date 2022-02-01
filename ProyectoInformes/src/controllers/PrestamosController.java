@@ -17,6 +17,7 @@ import model.Alumno;
 import model.Libro;
 import model.Prestamo;
 
+import java.awt.Menu;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -77,6 +78,7 @@ public class PrestamosController implements Initializable{
 	private Button btnBorrarLibro;
 	@FXML
 	private TextField buscarLibro;
+	
 
 	@FXML
     void verInformes(ActionEvent event) {
@@ -390,4 +392,9 @@ public class PrestamosController implements Initializable{
 			alert.showAndWait();
 		}
 	}
+	
+	@FXML
+    void verAyuda(ActionEvent event) {
+
+    }
 }

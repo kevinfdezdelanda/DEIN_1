@@ -17,8 +17,7 @@
 		<![CDATA[SELECT a.*, count(id_prestamo) "num_prestamos"
 FROM libros.Alumno a, libros.Historico_prestamo 
 where dni = dni_alumno 
-group by dni 
-]]>
+group by dni]]>
 	</queryString>
 	<field name="dni" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="dni"/>
@@ -58,7 +57,7 @@ group by dni
 		<band height="111" splitType="Stretch">
 			<image>
 				<reportElement x="30" y="0" width="109" height="100" uuid="0bf6ff10-4aac-4054-b49d-a67c68107737"/>
-				<imageExpression><![CDATA["/src/imagenes/icono.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/imagenes/icono.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="754b2002-4c4e-440f-a9a0-201219ece4d8"/>
@@ -165,7 +164,7 @@ group by dni
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="25" splitType="Stretch">
+		<band height="54" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
 				<textField evaluationTime="Report">
@@ -188,6 +187,23 @@ group by dni
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="30" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="c0d720e1-7949-43a4-858c-3053b58f95c5"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="5eb1f4ce-b212-4e23-a045-fcfa150fa81d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Kevin Fernandez"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="350" y="0" width="197" height="20" forecolor="#736343" uuid="5a68cc0a-300c-4045-a3d5-48fec1fb8b98"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["+34 666 66 66 66"]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

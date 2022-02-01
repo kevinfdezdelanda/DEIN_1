@@ -53,7 +53,7 @@
 		<band height="110" splitType="Stretch">
 			<image>
 				<reportElement x="30" y="0" width="109" height="100" uuid="ddc15723-2728-421f-b95e-2df9faf64ce1"/>
-				<imageExpression><![CDATA["/src/imagenes/icono.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/imagenes/icono.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
@@ -83,7 +83,7 @@
 					<subreportParameterExpression><![CDATA[$F{codigo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["prestamos.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["src/informes/prestamos.jasper"]]></subreportExpression>
 			</subreport>
 			<textField textAdjust="StretchHeight">
 				<reportElement style="Detail" x="0" y="64" width="92" height="15" uuid="d3a07781-1c2e-4052-8676-91eec6c8b069">
@@ -165,7 +165,7 @@
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="25" splitType="Stretch">
+		<band height="59" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
 				<textField evaluationTime="Report">
@@ -188,6 +188,23 @@
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="30" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="7fc0c029-227e-48ab-a49e-9f0ac19337a9"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="9a8965fb-7a44-4eb4-87de-ed88a60bea81"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Kevin Fernandez"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="350" y="0" width="197" height="20" forecolor="#736343" uuid="d9ce33b1-75e1-483e-9324-488aa1024c46"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["+34 666 66 66 66"]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

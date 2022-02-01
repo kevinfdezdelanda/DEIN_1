@@ -19,7 +19,15 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="14" width="595" height="50" forecolor="#FFFCFC" backcolor="#D0B48E" uuid="f313d767-072b-4fe6-b362-6bca6486409e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="27"/>
+				</textElement>
+				<text><![CDATA[Numero de prestamos por alumno (DNI)]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="225" splitType="Stretch">
@@ -43,19 +51,4 @@
 			</pie3DChart>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
