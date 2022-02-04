@@ -1,0 +1,14 @@
+
+.fondo {
+	-fx-background-image: url("../imagenes/fondo.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+.fondo Button {
+	-fx-background-color: rgb(52, 101, 164);
+	-fx-text-fill: white;
+}
+
+.fondo *{
+	-fx-font-weight: bold;
+}

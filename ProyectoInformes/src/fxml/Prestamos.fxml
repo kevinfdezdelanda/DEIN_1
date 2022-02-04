@@ -107,7 +107,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnNueboLibro" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="31.0" prefWidth="262.0" text="Nuevo libro" GridPane.rowIndex="3">
+                  <Button fx:id="btnNuevoLibro" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="31.0" prefWidth="262.0" text="Nuevo libro" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
@@ -152,7 +152,10 @@
               <MenuItem mnemonicParsing="false" onAction="#verAlumnos" text="Todos los alumnos" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" onAction="#verAyuda" text="Ayuda" />
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#verAyuda" text="Todos los alumnos" />
+               </items></Menu>
         </menus>
       </MenuBar>
    </children>

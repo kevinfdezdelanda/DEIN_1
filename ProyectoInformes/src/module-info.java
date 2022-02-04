@@ -14,6 +14,7 @@ module ProyectoFX {
     requires org.kordamp.ikonli.fontawesome5;
     requires org.kordamp.ikonli.javafx;
 	requires jasperreports;
+	requires javafx.web;
 	
 	opens application to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
