@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="grafico_fechas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="58dde3ee-29b2-4843-bc20-baa5693764df">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT fecha_prestamo, count(id_prestamo) 
+FROM libros.Historico_prestamo group by fecha_prestamo]]>
+	</queryString>
+	<field name="fecha_prestamo" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_prestamo"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_prestamo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="count(id_prestamo)" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="count(id_prestamo)"/>
+		<property name="com.jaspersoft.studio.field.label" value="count(id_prestamo)"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="396" splitType="Stretch">
+			<timeSeriesChart>
+				<chart evaluationTime="Report">
+					<reportElement x="-20" y="60" width="595" height="336" uuid="8f32097c-e9db-4f21-a55f-a457de68ce9e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<timeSeriesDataset>
+					<dataset resetType="Report"/>
+					<timeSeries>
+						<seriesExpression><![CDATA["num prestamos"]]></seriesExpression>
+						<timePeriodExpression><![CDATA[$F{fecha_prestamo}]]></timePeriodExpression>
+						<valueExpression><![CDATA[$F{count(id_prestamo)}]]></valueExpression>
+						<labelExpression><![CDATA["num prestamos"]]></labelExpression>
+					</timeSeries>
+				</timeSeriesDataset>
+				<timeSeriesPlot>
+					<plot/>
+					<timeAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</timeAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</timeSeriesPlot>
+			</timeSeriesChart>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="0" width="595" height="50" forecolor="#FFFCFC" backcolor="#D0B48E" uuid="8840be2b-2c40-47e4-8029-f48448281caf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="27"/>
+				</textElement>
+				<text><![CDATA[Numero de prestamos por fecha]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

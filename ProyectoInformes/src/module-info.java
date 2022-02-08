@@ -16,6 +16,9 @@ module ProyectoFX {
 	requires jasperreports;
 	requires javafx.web;
 	
+	requires javafx.swing;
+	requires jPDFViewerFX;
+	
 	opens application to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
 	opens model to javafx.base;

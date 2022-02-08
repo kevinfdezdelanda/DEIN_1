@@ -1,9 +1,9 @@
 eclipse.preferences.version=1
-encoding//src/informes/grafico_fechas.jrxml=UTF-8
-encoding//src/informes/grafico_numPrestamosAlumnos.jrxml=UTF-8
-encoding//src/informes/grafico_numPrestamosLibros.jrxml=UTF-8
-encoding//src/informes/informe2.jrxml=UTF-8
-encoding//src/informes/informe3.jrxml=UTF-8
-encoding//src/informes/informe4.jrxml=UTF-8
-encoding//src/informes/prestamos.jrxml=UTF-8
-encoding//src/informes/ultimoPrestamo.jrxml=UTF-8
+encoding//recursos/informes/grafico_fechas.jrxml=UTF-8
+encoding//recursos/informes/grafico_numPrestamosAlumnos.jrxml=UTF-8
+encoding//recursos/informes/grafico_numPrestamosLibros.jrxml=UTF-8
+encoding//recursos/informes/informe2.jrxml=UTF-8
+encoding//recursos/informes/informe3.jrxml=UTF-8
+encoding//recursos/informes/informe4.jrxml=UTF-8
+encoding//recursos/informes/prestamos.jrxml=UTF-8
+encoding//recursos/informes/ultimoPrestamo.jrxml=UTF-8

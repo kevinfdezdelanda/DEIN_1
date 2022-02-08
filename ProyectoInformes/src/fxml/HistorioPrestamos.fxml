@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -46,11 +47,17 @@
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="Filtro por nombre y apellidos" />
+               </tooltip>
             </TextField>
             <TextField fx:id="filtroLibro" prefHeight="18.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="filtro por nombre" />
+               </tooltip>
             </TextField>
             <Label text="Filtrar por:">
                <font>

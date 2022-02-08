@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -135,11 +136,17 @@
                      <GridPane.margin>
                         <Insets bottom="40.0" />
                      </GridPane.margin>
+                     <tooltip>
+                        <Tooltip text="buscar por nombre" />
+                     </tooltip>
                   </TextField>
                   <Button fx:id="btnInformes" mnemonicParsing="false" onAction="#verInformes" prefHeight="31.0" prefWidth="208.0" text="Informes" GridPane.rowIndex="6">
                      <graphic>
                         <FontIcon iconLiteral="fas-scroll" />
                      </graphic>
+                     <tooltip>
+                        <Tooltip text="Ver Informes" />
+                     </tooltip>
                   </Button>
                </children>
             </GridPane>
@@ -154,7 +161,8 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Ayuda">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#verAyuda" text="Todos los alumnos" />
+                  <MenuItem mnemonicParsing="false" onAction="#verAyuda" text="Guiá rapida" />
+                  <MenuItem mnemonicParsing="false" onAction="#verManual" text="Manual de usuario" />
                </items></Menu>
         </menus>
       </MenuBar>

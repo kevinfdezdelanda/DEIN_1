@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Alumno;
@@ -24,6 +25,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.qoppa.pdf.PDFException;
+import com.qoppa.pdfViewerFX.PDFViewer;
 
 import dao.GestionLibros;
 import dao.GestionPrestamos;
@@ -416,6 +420,29 @@ public class PrestamosController implements Initializable {
 			alert.setHeaderText(null);
 			alert.setContentText(e.getMessage());
 			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	void verManual(ActionEvent event) {
+		try {
+			PDFViewer visorPDF = new PDFViewer();
+			visorPDF.loadPDF(getClass().getResource("/pdf/manualDeUsuario.pdf"));
+			Stage stage = new Stage();
+			BorderPane borderPane = new BorderPane(visorPDF);
+			Scene scene = new Scene(borderPane);
+			stage.setTitle("Aydua");
+			stage.setScene(scene);
+			stage.centerOnScreen();
+			stage.show();
+		}catch (PDFException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}catch(Exception e) {
+			
 		}
 	}
 }

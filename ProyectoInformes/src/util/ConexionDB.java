@@ -11,10 +11,10 @@ public class ConexionDB {
 	private Connection conexion;
 
 	public ConexionDB() throws SQLException {
-		String host = Messages.getString("ConexionDB.0"); //$NON-NLS-1$
-		String baseDatos = Messages.getString("ConexionDB.1"); //$NON-NLS-1$
-		String usuario = Messages.getString("ConexionDB.2"); //$NON-NLS-1$
-		String password = Messages.getString("ConexionDB.3"); //$NON-NLS-1$
+		String host = Propiedades.getValor("ConexionDB.0"); //$NON-NLS-1$
+		String baseDatos = Propiedades.getValor("ConexionDB.1"); //$NON-NLS-1$
+		String usuario = Propiedades.getValor("ConexionDB.2"); //$NON-NLS-1$
+		String password = Propiedades.getValor("ConexionDB.3"); //$NON-NLS-1$
 		String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos + "?serverTimezone=" 
 				+ TimeZone.getDefault().getID();
 		conexion = DriverManager.getConnection(cadenaConexion, usuario, password);

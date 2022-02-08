@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="370.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="controllers.InformesController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InformesController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -16,17 +16,17 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="btnInforme1" mnemonicParsing="false" onAction="#verInforme1" prefHeight="31.0" prefWidth="208.0" text="Informe 1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Button fx:id="btnInforme1" mnemonicParsing="false" onAction="#verInforme1" prefHeight="31.0" prefWidth="208.0" text="Informe Libros" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <graphic>
             <FontIcon iconLiteral="fas-scroll" />
          </graphic>
       </Button>
-      <Button fx:id="btnInforme2" mnemonicParsing="false" onAction="#verInforme2" prefHeight="31.0" prefWidth="208.0" text="Informe 2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="btnInforme2" mnemonicParsing="false" onAction="#verInforme2" prefHeight="31.0" prefWidth="208.0" text="Informe Graficos" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <graphic>
             <FontIcon iconLiteral="fas-scroll" />
          </graphic>
       </Button>
-      <Button fx:id="btnInforme3" mnemonicParsing="false" onAction="#verInforme3" prefHeight="31.0" prefWidth="208.0" text="Informe 3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Button fx:id="btnInforme3" mnemonicParsing="false" onAction="#verInforme3" prefHeight="31.0" prefWidth="208.0" text="Informe Alumnos" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <graphic>
             <FontIcon iconLiteral="fas-scroll" />
          </graphic>

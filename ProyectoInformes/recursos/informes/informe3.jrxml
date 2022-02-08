@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe3" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="889e8932-7ac8-4da2-9451-8f4c745d09b5">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[select * from libros.Alumno]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="748" splitType="Stretch">
+			<image>
+				<reportElement x="30" y="0" width="109" height="100" uuid="84fab962-c358-4904-af96-fa403a324dd0"/>
+				<imageExpression><![CDATA["recursos/imagenes/icono.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="170" y="0" width="263" height="62" uuid="9000da81-2e8c-48f2-b393-ef005b5727e9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="29" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SansSerif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="62" width="196" height="22" uuid="bc199b6e-5260-459b-b625-d5d33bcb9d86"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<text><![CDATA[Libreria]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-20" y="120" width="595" height="319" uuid="fbc77d6f-ac47-4d02-a3e7-0bbc971f9ccc">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["recursos/informes/grafico_numPrestamosAlumnos.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="-18" y="439" width="595" height="290" uuid="51666a15-8251-4c51-8d11-296e351e4304"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["recursos/informes/grafico_numPrestamosLibros.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="4150eb10-fd29-4890-bce0-e09d8695951b"/>
+				<textField evaluationTime="Report">
+					<reportElement x="533" y="0" width="40" height="20" forecolor="#736343" uuid="c85f8195-f081-43c8-ba74-2adb14a99755"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="453" y="0" width="80" height="20" forecolor="#736343" uuid="eb9bc046-2bbe-4ec1-aea1-d05377793bf5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="22" y="1" width="197" height="20" forecolor="#736343" uuid="a384ec7e-4106-46e2-a696-f7864ddcd773"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="30" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="cfcd03ca-a120-494d-9d37-7e36964d3387"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="22" y="1" width="197" height="20" forecolor="#736343" uuid="137e3b9b-aaf2-49f8-86e9-053ad52d7994"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Kevin Fernandez"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="350" y="0" width="197" height="20" forecolor="#736343" uuid="38551602-111d-49f8-8fc1-83c7b69768cd"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["+34 666 66 66 66"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="219" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="30" width="599" height="160" uuid="3e0d7462-d043-4e39-9aba-c7818962ba99"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["recursos/informes/grafico_fechas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

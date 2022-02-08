@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -67,6 +68,9 @@
                <graphic>
                   <FontIcon iconLiteral="fas-plus" />
                </graphic>
+               <tooltip>
+                  <Tooltip text="Crear alumno" />
+               </tooltip>
             </Button>
             <Button mnemonicParsing="false" onAction="#editarAlumno" text="Editar">
                <FlowPane.margin>
@@ -75,6 +79,9 @@
                <graphic>
                   <FontIcon iconLiteral="fas-edit" />
                </graphic>
+               <tooltip>
+                  <Tooltip text="Editar Alumno" />
+               </tooltip>
             </Button>
             <Button mnemonicParsing="false" onAction="#borrarAlumno" text="Borrar">
                <FlowPane.margin>
@@ -83,6 +90,9 @@
                <graphic>
                   <FontIcon iconLiteral="fas-trash" />
                </graphic>
+               <tooltip>
+                  <Tooltip text="Borrar alumno" />
+               </tooltip>
             </Button>
          </children>
       </FlowPane>
